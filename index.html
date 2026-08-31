@@ -1613,6 +1613,136 @@
     #backup-modal { padding: 18px 14px; }
     .backup-btn-row { flex-direction: column; }
   }
+
+  /* ── SEARCH ── */
+  #search-nav-btn {
+    background: transparent;
+    border: 1.5px solid var(--text-sub);
+    color: var(--text-sub);
+    border-radius: 50%;
+    width: 36px; height: 36px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.18s;
+  }
+  #search-nav-btn:hover { border-color: var(--accent3); color: var(--accent3); }
+
+  #search-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.82);
+    z-index: 10001;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px;
+    gap: 12px;
+    overflow-y: auto;
+  }
+  #search-overlay.show { display: flex; }
+
+  #search-box-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 540px;
+    flex-shrink: 0;
+  }
+  #search-input {
+    flex: 1;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 2px solid var(--accent3);
+    background: var(--card-front);
+    color: var(--text-main);
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    outline: none;
+  }
+  #search-input::placeholder { color: var(--text-sub); }
+  #search-close-btn {
+    background: transparent;
+    border: 1.5px solid var(--text-sub);
+    color: var(--text-sub);
+    border-radius: 50%;
+    width: 40px; height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #search-results {
+    width: 100%;
+    max-width: 540px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  #search-count {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    color: var(--text-sub);
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .search-result {
+    background: var(--card-front);
+    border-radius: 14px;
+    padding: 14px 16px;
+    cursor: pointer;
+    border: 1.5px solid var(--btn-hover);
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .search-result:hover, .search-result:active {
+    border-color: var(--accent3);
+    background: var(--btn-hover);
+    transform: scale(1.02);
+  }
+  .search-result-emoji { font-size: 1.4rem; flex-shrink: 0; }
+  .search-result-body { flex: 1; min-width: 0; }
+  .search-result-es {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    color: var(--text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .search-result-en {
+    font-size: 0.82rem;
+    color: var(--text-sub);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .search-result-cat {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--accent3);
+    background: rgba(78,205,196,0.12);
+    border-radius: 6px;
+    padding: 2px 7px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  #search-empty {
+    color: var(--text-sub);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    text-align: center;
+    padding: 20px;
+  }
+  @media (max-width: 600px) {
+    #search-overlay { padding: 14px 10px; }
+    #search-input { font-size: 1rem; padding: 12px 14px; }
+  }
 </style>
 </head>
 <body>
@@ -1621,6 +1751,7 @@
   <nav id="topnav">
     <div class="nav-top-row">
       <div id="logo">🌮 MexiSpeak</div>
+      <button id="search-nav-btn" onclick="showSearch()" title="Search">🔍</button>
       <button id="backup-btn" onclick="showBackup()" title="Backup & Restore">💾<span id="backup-dot" style="display:none;position:absolute;top:2px;right:2px;width:8px;height:8px;border-radius:50%;background:#ff6b35;"></span></button>
       <button id="help-btn" onclick="showHelp()" title="Help">?</button>
       <div id="voice-wrap">
@@ -7147,7 +7278,7 @@ function showQuizCard() {
 
   quizAnswered = false;
   const card = quizDeck[quizIdx];
-  const allCards = buildQuizDeck(quizDeckKey); // for distractor pool
+  const allCards = buildQuizDeck(quizDeckKey); // already excludes mastered via quizCardRetired filter
 
   // Update label and question
   document.getElementById('quiz-card-label').textContent = card.label;
@@ -7188,11 +7319,17 @@ function showQuizCard() {
   } else {
     typeWrap.classList.remove('visible');
     optDiv.style.display = 'grid';
-    optDiv.innerHTML = options.map(opt => {
-      const safeOpt = opt.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-      const safeAns = card.answer.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-      return '<button class="quiz-opt-btn" onclick="selectQuizAnswer(this,\'' + safeOpt + '\',\'' + safeAns + '\')">' + opt + '</button>';
-    }).join('');
+    // Build buttons via DOM to avoid quote escaping issues
+    optDiv.innerHTML = '';
+    options.forEach(function(opt) {
+      var btn = document.createElement('button');
+      btn.className = 'quiz-opt-btn';
+      btn.textContent = opt;
+      btn.addEventListener('click', (function(o, a) {
+        return function() { selectQuizAnswer(this, o, a); };
+      })(opt, card.answer));
+      optDiv.appendChild(btn);
+    });
   }
 }
 
@@ -8403,6 +8540,230 @@ function initBackup() {
     if (dot) dot.style.display = 'block';
   }
 }
+
+// ══════════════════════════════════════════════════════
+// SEARCH
+// ══════════════════════════════════════════════════════
+
+var SEARCH_INDEX = null;
+
+// Build search index once lazily
+function buildSearchIndex() {
+  if (SEARCH_INDEX) return SEARCH_INDEX;
+  SEARCH_INDEX = [];
+
+  // Category display names and hub mapping
+  var catMeta = {
+    nouns_top500:    { label: 'Top 500 Nouns', emoji: '⭐', hub: 'topics' },
+    nouns_food:      { label: 'Food & Drink',  emoji: '🍽️', hub: 'topics' },
+    nouns_health:    { label: 'Health & Body', emoji: '🏥', hub: 'topics' },
+    travel_transport:{ label: 'Travel',        emoji: '✈️', hub: 'topics' },
+    family:          { label: 'Family',        emoji: '👨‍👩‍👧', hub: 'topics' },
+    emotions:        { label: 'Emotions',      emoji: '😊', hub: 'topics' },
+    nouns_home:      { label: 'Home',          emoji: '🏠', hub: 'topics' },
+    clothing:        { label: 'Clothing',      emoji: '👕', hub: 'topics' },
+    nouns_work:      { label: 'Work',          emoji: '💼', hub: 'topics' },
+    nouns_nature:    { label: 'Nature',        emoji: '🌿', hub: 'topics' },
+    technology:      { label: 'Technology',    emoji: '📱', hub: 'topics' },
+    nouns_society:   { label: 'Society',       emoji: '🌍', hub: 'topics' },
+    nouns_culture:   { label: 'Mexican Culture', emoji: '🎭', hub: 'topics' },
+    shopping:        { label: 'Shopping',      emoji: '🛒', hub: 'topics' },
+    numbers_time:    { label: 'Numbers & Time',emoji: '🔢', hub: 'topics' },
+    adjectives:      { label: 'Adjectives',    emoji: '✨', hub: 'words' },
+    adverbs:         { label: 'Adverbs',       emoji: '⚡', hub: 'words' },
+    colors:          { label: 'Colors',        emoji: '🎨', hub: 'words' },
+    greetings:       { label: 'Greetings',     emoji: '👋', hub: 'realspanish' },
+    questions:       { label: 'Expressions',   emoji: '❓', hub: 'realspanish' },
+    slang:           { label: 'Mexican Slang', emoji: '🌶️', hub: 'realspanish' },
+    connectors:      { label: 'Connectors',    emoji: '🔗', hub: 'realspanish' },
+    prepositions:    { label: 'Prepositions',  emoji: '📍', hub: 'realspanish' },
+  };
+
+  // ── Index all vocabulary ──
+  Object.entries(VOCAB).forEach(function([cat, words]) {
+    var meta = catMeta[cat] || { label: cat, emoji: '📚', hub: 'topics' };
+    words.forEach(function(word, idx) {
+      if (!word.es || !word.en) return;
+      SEARCH_INDEX.push({
+        type: 'vocab',
+        cat: cat,
+        idx: idx,
+        es: word.es,
+        en: word.en,
+        label: meta.label,
+        emoji: meta.emoji,
+        hub: meta.hub,
+        searchEs: word.es.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
+        searchEn: word.en.toLowerCase()
+      });
+    });
+  });
+
+  // ── Index Top 150 verbs ──
+  TOP150.forEach(function(v, idx) {
+    SEARCH_INDEX.push({
+      type: 'top150',
+      idx: idx,
+      es: v.verb,
+      en: v.en,
+      label: 'Top 150 #' + v.rank,
+      emoji: '🏆',
+      hub: 'verbs',
+      searchEs: v.verb.toLowerCase(),
+      searchEn: v.en.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    });
+  });
+
+  // ── Index tense decks ──
+  var tenseLabels = { pres:'Present', fut:'Future', pret:'Pretérito', imp:'Imperfect', subj:'Subjunctive', cond:'Conditional' };
+  Object.entries(TENSE_DECKS).forEach(function([t, deck]) {
+    if (!Array.isArray(deck)) return;
+    deck.forEach(function(v, idx) {
+      if (!v.verb || !v.en) return;
+      // Only index if not already in top150 (avoid duplicates for pres/fut)
+      var alreadyIn = SEARCH_INDEX.some(function(s) { return s.type === 'top150' && s.es === v.verb; });
+      if (alreadyIn && (t === 'pres' || t === 'fut')) return;
+      SEARCH_INDEX.push({
+        type: 'tense',
+        tense: t,
+        idx: idx,
+        es: v.verb,
+        en: v.en,
+        label: tenseLabels[t] || t,
+        emoji: '🔤',
+        hub: 'verbs',
+        searchEs: v.verb.toLowerCase(),
+        searchEn: v.en.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      });
+    });
+  });
+
+  return SEARCH_INDEX;
+}
+
+function showSearch() {
+  buildSearchIndex();
+  document.getElementById('search-overlay').classList.add('show');
+  setTimeout(function() {
+    var input = document.getElementById('search-input');
+    if (input) { input.value = ''; input.focus(); }
+    document.getElementById('search-results').innerHTML = '';
+    document.getElementById('search-count').textContent = '';
+  }, 50);
+}
+
+function hideSearch() {
+  document.getElementById('search-overlay').classList.remove('show');
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML = '';
+  document.getElementById('search-count').textContent = '';
+}
+
+function doSearch(query) {
+  var q = query.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  var resultsEl = document.getElementById('search-results');
+  var countEl = document.getElementById('search-count');
+
+  if (q.length < 2) {
+    resultsEl.innerHTML = '';
+    countEl.textContent = '';
+    return;
+  }
+
+  var index = buildSearchIndex();
+  var matches = [];
+  var seen = new Set();
+
+  index.forEach(function(item) {
+    // Score: exact start match scores higher than contains
+    var esMatch = item.searchEs.startsWith(q) ? 2 : (item.searchEs.includes(q) ? 1 : 0);
+    var enMatch = item.searchEn.startsWith(q) ? 2 : (item.searchEn.includes(q) ? 1 : 0);
+    var score = Math.max(esMatch, enMatch);
+    if (score > 0) {
+      // Dedupe by es+type
+      var key = item.type + '|' + item.es + '|' + (item.cat || item.tense || '');
+      if (!seen.has(key)) {
+        seen.add(key);
+        matches.push({ item: item, score: score });
+      }
+    }
+  });
+
+  // Sort: exact-start first, then alphabetically
+  matches.sort(function(a, b) {
+    if (b.score !== a.score) return b.score - a.score;
+    return a.item.es.localeCompare(b.item.es);
+  });
+
+  var MAX_RESULTS = 40;
+  var shown = matches.slice(0, MAX_RESULTS);
+
+  if (shown.length === 0) {
+    resultsEl.innerHTML = '<div id="search-empty">No results for "' + query + '"</div>';
+    countEl.textContent = '';
+    return;
+  }
+
+  countEl.textContent = matches.length > MAX_RESULTS
+    ? 'Showing ' + MAX_RESULTS + ' of ' + matches.length + ' results'
+    : matches.length + ' result' + (matches.length === 1 ? '' : 's');
+
+  resultsEl.innerHTML = '';
+  shown.forEach(function(m) {
+    var item = m.item;
+    var div = document.createElement('div');
+    div.className = 'search-result';
+    div.innerHTML =
+      '<div class="search-result-emoji">' + item.emoji + '</div>' +
+      '<div class="search-result-body">' +
+        '<div class="search-result-es">' + item.es + '</div>' +
+        '<div class="search-result-en">' + item.en + '</div>' +
+      '</div>' +
+      '<div class="search-result-cat">' + item.label + '</div>';
+    div.addEventListener('click', (function(it) {
+      return function() { openSearchResult(it); };
+    })(item));
+    resultsEl.appendChild(div);
+  });;
+}
+
+function openSearchResult(item) {
+  hideSearch();
+
+  if (item.type === 'vocab') {
+    // Jump to this vocab card
+    _lastHubNav = {topics:1, words:2, realspanish:3}[item.hub] || 1;
+    var sel = document.getElementById('vocab-cat-select');
+    if (sel) sel.value = item.cat;
+    showScreen('vocab');
+    // After screen shows, jump to correct card
+    setTimeout(function() {
+      vocabIdx = item.idx;
+      showVocabCard();
+    }, 50);
+
+  } else if (item.type === 'top150') {
+    // Jump to this verb in Top 150
+    _lastHubNav = 0;
+    showScreen('top150');
+    setTimeout(function() {
+      top150Idx = item.idx;
+      showTop150Card();
+    }, 50);
+
+  } else if (item.type === 'tense') {
+    // Jump to this verb in the tense screen
+    _lastHubNav = 0;
+    var t = item.tense;
+    showScreen(t);
+    setTimeout(function() {
+      if (tenseDeckState[t]) {
+        tenseDeckState[t].idx = item.idx;
+        showTenseCard(t);
+      }
+    }, 100);
+  }
+}
 </script>
 
   <!-- HELP MODAL -->
@@ -8522,6 +8883,18 @@ function initBackup() {
       </div>
 
     </div>
+  </div>
+
+  <!-- SEARCH OVERLAY -->
+  <div id="search-overlay" onclick="if(event.target===this)hideSearch()">
+    <div id="search-box-wrap">
+      <input id="search-input" type="search" placeholder="Search Spanish or English..." 
+             oninput="doSearch(this.value)" autocomplete="off" autocorrect="off" 
+             autocapitalize="off" spellcheck="false">
+      <button id="search-close-btn" onclick="hideSearch()">✕</button>
+    </div>
+    <div id="search-count"></div>
+    <div id="search-results"></div>
   </div>
 </body>
 </html>
