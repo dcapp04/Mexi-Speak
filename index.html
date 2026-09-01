@@ -7184,7 +7184,18 @@ function getDistractors(card, allCards, count) {
 
   // Top up with fallback pool if needed (other verbs same tense)
   if (wrong.length < count) {
+    // Some quiz pools contain full card objects (e.g. TOP150/VOCAB),
+    // while others already contain answer strings. Normalize everything
+    // to the actual answer before using it as an option.
     const fallback = (card.pool || [])
+      .map(function(item) {
+        if (typeof item === 'string') return item;
+        if (card.type === 'top150' && item && typeof item.verb === 'string') return item.verb;
+        if ((card.type === 'vocab' || card.type === 'fav_vocab') && item && typeof item.es === 'string') return item.es;
+        if (item && typeof item.answer === 'string') return item.answer;
+        return null;
+      })
+      .filter(Boolean)
       .filter(a => a !== card.answer && !wrong.includes(a));
     wrong = [...wrong, ...fallback];
   }
