@@ -2395,7 +2395,7 @@
         <div class="flashcard tense-card" id="ger-card" onclick="flipTenseCard('ger')">
           <div class="card-face card-front tense-front" id="ger-front">
             <div class="card-label" style="color:var(--accent2);">ENGLISH — TAP TO FLIP</div>
-            <div class="tense-rank" id="cond-rank" style="color:var(--accent2);"></div>
+            <div class="tense-rank" id="ger-rank" style="color:var(--accent2);"></div>
             <div class="card-main-text tense-en" id="ger-en"></div>
             <div id="ger-reg-badge" class="reg-badge" style="display:none;"></div>
             <div class="card-hint">👆 Tap to see Conditional conjugation</div>
@@ -2408,10 +2408,10 @@
         </div>
         <button class="nav-arrow" style="border-color:var(--accent2);color:var(--accent2);background:rgba(255,215,0,0.1);" onclick="nextTenseCard('ger')">&#8594;</button>
       </div>
-      <div class="answer-btns" id="cond-answer-btns" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;">
+      <div class="answer-btns" id="ger-answer-btns" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;">
         <button class="fav-btn" id="ger-fav-btn" onclick="toggleFav('ger')" title="Add to Favourites">☆</button>
         <button class="retire-btn" id="ger-retire-btn" onclick="toggleRetire('ger')" title="Retire — never show again" style="padding:14px 22px;border-radius:14px;background:#4ecdc4;border-color:#4ecdc4;color:#fff;font-size:1.8rem;">🔥 Mastered</button>
-        <button class="speak-btn" id="cond-speak-btn" onclick="speakCard('cond-card', document.getElementById('cond-verb').textContent, this)" title="Front: speak infinitive · Back: speak all conjugations">🔊</button>
+        <button class="speak-btn" id="ger-speak-btn" onclick="speakCard('ger-card', document.getElementById('ger-verb').textContent, this)" title="Front: speak infinitive · Back: speak all conjugations">🔊</button>
         <button class="ans-btn ans-flip" onclick="flipTenseCard('ger')">🔄 Flip</button>
         <div class="sa-btns">
           <button class="sa-btn sa-got"  onclick="selfAssess('ger', true)">✅ Got it</button>
@@ -2433,7 +2433,7 @@
         <div class="flashcard tense-card" id="futprox-card" onclick="flipTenseCard('futprox')">
           <div class="card-face card-front tense-front" id="futprox-front">
             <div class="card-label" style="color:var(--accent2);">ENGLISH — TAP TO FLIP</div>
-            <div class="tense-rank" id="cond-rank" style="color:var(--accent2);"></div>
+            <div class="tense-rank" id="futprox-rank" style="color:var(--accent2);"></div>
             <div class="card-main-text tense-en" id="futprox-en"></div>
             <div id="futprox-reg-badge" class="reg-badge" style="display:none;"></div>
             <div class="card-hint">👆 Tap to see Conditional conjugation</div>
@@ -2446,10 +2446,10 @@
         </div>
         <button class="nav-arrow" style="border-color:var(--accent2);color:var(--accent2);background:rgba(255,215,0,0.1);" onclick="nextTenseCard('futprox')">&#8594;</button>
       </div>
-      <div class="answer-btns" id="cond-answer-btns" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;">
+      <div class="answer-btns" id="futprox-answer-btns" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;">
         <button class="fav-btn" id="futprox-fav-btn" onclick="toggleFav('futprox')" title="Add to Favourites">☆</button>
         <button class="retire-btn" id="futprox-retire-btn" onclick="toggleRetire('futprox')" title="Retire — never show again" style="padding:14px 22px;border-radius:14px;background:#4ecdc4;border-color:#4ecdc4;color:#fff;font-size:1.8rem;">🔥 Mastered</button>
-        <button class="speak-btn" id="cond-speak-btn" onclick="speakCard('cond-card', document.getElementById('cond-verb').textContent, this)" title="Front: speak infinitive · Back: speak all conjugations">🔊</button>
+        <button class="speak-btn" id="futprox-speak-btn" onclick="speakCard('futprox-card', document.getElementById('futprox-verb').textContent, this)" title="Front: speak infinitive · Back: speak all conjugations">🔊</button>
         <button class="ans-btn ans-flip" onclick="flipTenseCard('futprox')">🔄 Flip</button>
         <div class="sa-btns">
           <button class="sa-btn sa-got"  onclick="selfAssess('futprox', true)">✅ Got it</button>
@@ -6573,7 +6573,8 @@ function showTenseCard(t) {
   const card = document.getElementById(t + '-card');
   card.classList.remove('flipped');
   const v = s.deck[s.idx];
-  document.getElementById(t + '-rank').textContent = '#' + (s.idx + 1) + ' Most Commonly Used of ' + s.deck.length;
+  var rankEl = document.getElementById(t + '-rank');
+  if (rankEl) rankEl.textContent = '#' + (s.idx + 1) + ' of ' + s.deck.length;
   document.getElementById(t + '-en').textContent = enForTense(v.en, t);
   // Regularity badge (only on tense screens, not pres/fut which use en directly)
   var regBadgeEl = document.getElementById(t + '-reg-badge');
