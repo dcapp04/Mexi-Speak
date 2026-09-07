@@ -2007,6 +2007,16 @@
           <div class="hub-tile-name">Conditional</div>
           <div class="hub-tile-count">25 verbs</div>
         </div>
+        <div class="hub-tile" onclick="showScreen('ger')">
+          <div class="hub-tile-emoji">🔄</div>
+          <div class="hub-tile-name">Gerundio (-ndo)</div>
+          <div class="hub-tile-count">30 verbs</div>
+        </div>
+        <div class="hub-tile" onclick="showScreen('futprox')">
+          <div class="hub-tile-emoji">🚀</div>
+          <div class="hub-tile-name">Futuro Próximo</div>
+          <div class="hub-tile-count">25 verbs</div>
+        </div>
         <div class="hub-tile" onclick="showScreen('fut')">
           <div class="hub-tile-emoji">🔮</div>
           <div class="hub-tile-name">Future</div>
@@ -2371,6 +2381,81 @@
           <button class="sa-btn sa-miss" onclick="selfAssess('cond', false)">❌ Missed it</button>
         </div>
         <button class="ans-btn ans-shuffle" onclick="shuffleTenseDeck('cond')">🔀 Shuffle</button>
+      </div>
+    </div>
+
+
+id="screen-ger" class="screen screen-tense">
+      <div class="tense-screen-header">
+        <h2>🔄 Top 30 — Gerundio (-ndo form)</h2>
+        <span id="ger-progress" style="color:var(--accent2);font-weight:800;font-size:1.05rem;"></span>
+      </div>
+      <div class="card-nav-wrap">
+        <button class="nav-arrow" style="border-color:var(--accent2);color:var(--accent2);background:rgba(255,215,0,0.1);" onclick="prevTenseCard('ger')">&#8592;</button>
+        <div class="flashcard tense-card" id="ger-card" onclick="flipTenseCard('ger')">
+          <div class="card-face card-front tense-front" id="ger-front">
+            <div class="card-label" style="color:var(--accent2);">ENGLISH — TAP TO FLIP</div>
+            <div class="tense-rank" id="cond-rank" style="color:var(--accent2);"></div>
+            <div class="card-main-text tense-en" id="ger-en"></div>
+            <div id="ger-reg-badge" class="reg-badge" style="display:none;"></div>
+            <div class="card-hint">👆 Tap to see Conditional conjugation</div>
+          </div>
+          <div class="card-face card-back tense-back" id="ger-back" style="border-color:var(--accent2);">
+            <div class="tense-infinitive" id="ger-verb"></div>
+            <div class="tense-label-pill" style="background:rgba(255,215,0,0.18);color:var(--accent2);border-color:var(--accent2);">Conditional</div>
+            <div class="card-back-content" id="ger-table"></div>
+          </div>
+        </div>
+        <button class="nav-arrow" style="border-color:var(--accent2);color:var(--accent2);background:rgba(255,215,0,0.1);" onclick="nextTenseCard('ger')">&#8594;</button>
+      </div>
+      <div class="answer-btns" id="cond-answer-btns" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;">
+        <button class="fav-btn" id="ger-fav-btn" onclick="toggleFav('ger')" title="Add to Favourites">☆</button>
+        <button class="retire-btn" id="ger-retire-btn" onclick="toggleRetire('ger')" title="Retire — never show again" style="padding:14px 22px;border-radius:14px;background:#4ecdc4;border-color:#4ecdc4;color:#fff;font-size:1.8rem;">🔥 Mastered</button>
+        <button class="speak-btn" id="cond-speak-btn" onclick="speakCard('cond-card', document.getElementById('cond-verb').textContent, this)" title="Front: speak infinitive · Back: speak all conjugations">🔊</button>
+        <button class="ans-btn ans-flip" onclick="flipTenseCard('ger')">🔄 Flip</button>
+        <div class="sa-btns">
+          <button class="sa-btn sa-got"  onclick="selfAssess('ger', true)">✅ Got it</button>
+          <button class="sa-btn sa-miss" onclick="selfAssess('ger', false)">❌ Missed it</button>
+        </div>
+        <button class="ans-btn ans-shuffle" onclick="shuffleTenseDeck('ger')">🔀 Shuffle</button>
+      </div>
+    </div>
+
+
+
+id="screen-futprox" class="screen screen-tense">
+      <div class="tense-screen-header">
+        <h2>🚀 Top 25 — Futuro Próximo</h2>
+        <span id="futprox-progress" style="color:var(--accent2);font-weight:800;font-size:1.05rem;"></span>
+      </div>
+      <div class="card-nav-wrap">
+        <button class="nav-arrow" style="border-color:var(--accent2);color:var(--accent2);background:rgba(255,215,0,0.1);" onclick="prevTenseCard('futprox')">&#8592;</button>
+        <div class="flashcard tense-card" id="futprox-card" onclick="flipTenseCard('futprox')">
+          <div class="card-face card-front tense-front" id="futprox-front">
+            <div class="card-label" style="color:var(--accent2);">ENGLISH — TAP TO FLIP</div>
+            <div class="tense-rank" id="cond-rank" style="color:var(--accent2);"></div>
+            <div class="card-main-text tense-en" id="futprox-en"></div>
+            <div id="futprox-reg-badge" class="reg-badge" style="display:none;"></div>
+            <div class="card-hint">👆 Tap to see Conditional conjugation</div>
+          </div>
+          <div class="card-face card-back tense-back" id="futprox-back" style="border-color:var(--accent2);">
+            <div class="tense-infinitive" id="futprox-verb"></div>
+            <div class="tense-label-pill" style="background:rgba(255,215,0,0.18);color:var(--accent2);border-color:var(--accent2);">Conditional</div>
+            <div class="card-back-content" id="futprox-table"></div>
+          </div>
+        </div>
+        <button class="nav-arrow" style="border-color:var(--accent2);color:var(--accent2);background:rgba(255,215,0,0.1);" onclick="nextTenseCard('futprox')">&#8594;</button>
+      </div>
+      <div class="answer-btns" id="cond-answer-btns" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;">
+        <button class="fav-btn" id="futprox-fav-btn" onclick="toggleFav('futprox')" title="Add to Favourites">☆</button>
+        <button class="retire-btn" id="futprox-retire-btn" onclick="toggleRetire('futprox')" title="Retire — never show again" style="padding:14px 22px;border-radius:14px;background:#4ecdc4;border-color:#4ecdc4;color:#fff;font-size:1.8rem;">🔥 Mastered</button>
+        <button class="speak-btn" id="cond-speak-btn" onclick="speakCard('cond-card', document.getElementById('cond-verb').textContent, this)" title="Front: speak infinitive · Back: speak all conjugations">🔊</button>
+        <button class="ans-btn ans-flip" onclick="flipTenseCard('futprox')">🔄 Flip</button>
+        <div class="sa-btns">
+          <button class="sa-btn sa-got"  onclick="selfAssess('futprox', true)">✅ Got it</button>
+          <button class="sa-btn sa-miss" onclick="selfAssess('futprox', false)">❌ Missed it</button>
+        </div>
+        <button class="ans-btn ans-shuffle" onclick="shuffleTenseDeck('futprox')">🔀 Shuffle</button>
       </div>
     </div>
 
@@ -4852,18 +4937,18 @@ function showScreen(id) {
   const hubMap = {verbs:0, topics:1, words:2, realspanish:3, favs:4, mastered:5, quiz:6};
   if (hubMap[id] !== undefined) {
     // Navigating to a hub — remember which hub button to use for child screens
-    if (id === 'verbs' || id === 'topics' || id === 'words' || id === 'realspanish') {
+    if (['verbs','topics','words','realspanish'].includes(id)) {
       _lastHubNav = hubMap[id];
     }
     btns[hubMap[id]].classList.add('active');
-  } else if (id === 'vocab' || id === 'top150' || ['pres','fut','pret','imp','subj','cond'].includes(id)) {
+  } else if (id === 'vocab' || id === 'top150' || ['pres','fut','pret','imp','subj','cond','ger','futprox'].includes(id)) {
     // Content screen — highlight whichever hub we came from
     btns[_lastHubNav].classList.add('active');
   }
   if (id === 'top150') initTop150();
   if (id === 'vocab') resetVocabDeck();
   if (id === 'favs') initFavs();
-  if (['pres','fut','pret','imp','subj','cond'].includes(id)) initTenseScreen(id);
+  if (['pres','fut','pret','imp','subj','cond','ger','futprox'].includes(id)) initTenseScreen(id);
   if (id === 'quiz') initQuizScreen();
 }
 
@@ -6122,6 +6207,8 @@ const TENSE_DECKS = {
     {verb:'creer',      en:'to believe / think',    conj:{'yo':'creí','tú':'creíste','él/ella/usted':'creyó','nosotros':'creímos','ustedes':'creyeron'}},
   ],
   imp: [
+    {verb:'haber', en:'to have (auxiliary / there was)',
+      conj:{'yo':'había','tú':'habías','él/ella/usted':'había','nosotros':'habíamos','ustedes':'habían'}},
     {verb:'ser',        en:'to be (permanent)',     conj:{'yo':'era','tú':'eras','él/ella/usted':'era','nosotros':'éramos','ustedes':'eran'}},
     {verb:'ir',         en:'to go',                 conj:{'yo':'iba','tú':'ibas','él/ella/usted':'iba','nosotros':'íbamos','ustedes':'iban'}},
     {verb:'ver',        en:'to see / watch',        conj:{'yo':'veía','tú':'veías','él/ella/usted':'veía','nosotros':'veíamos','ustedes':'veían'}},
@@ -6222,16 +6309,77 @@ const TENSE_DECKS = {
     {verb:'conocer',    en:'to know / meet',        conj:{'yo':'conocería','tú':'conocerías','él/ella/usted':'conocería','nosotros':'conoceríamos','ustedes':'conocerían'}},
     {verb:'escribir',   en:'to write  (regular)',    conj:{'yo':'escribiría','tú':'escribirías','él/ella/usted':'escribiría','nosotros':'escribiríamos','ustedes':'escribirían'}},
   ],
+  ger: [
+    {verb:'hablar',   en:'to speak (regular -AR)',  ger:'hablando',  ex:'Estoy hablando con ella.'},
+    {verb:'trabajar', en:'to work (regular -AR)',    ger:'trabajando',ex:'Están trabajando mucho.'},
+    {verb:'caminar',  en:'to walk (regular -AR)',    ger:'caminando', ex:'Estaba caminando al mercado.'},
+    {verb:'escuchar', en:'to listen (regular -AR)',  ger:'escuchando',ex:'Estoy escuchando música.'},
+    {verb:'esperar',  en:'to wait (regular -AR)',    ger:'esperando', ex:'Estábamos esperando el camión.'},
+    {verb:'pensar',   en:'to think (e→ie)',          ger:'pensando',  ex:'Estoy pensando en ti.'},
+    {verb:'buscar',   en:'to look for (regular -AR)',ger:'buscando',  ex:'Están buscando un apartamento.'},
+    {verb:'comprar',  en:'to buy (regular -AR)',     ger:'comprando', ex:'Estaba comprando en el mercado.'},
+    {verb:'comer',    en:'to eat (regular -ER)',     ger:'comiendo',  ex:'Estoy comiendo tacos.'},
+    {verb:'beber',    en:'to drink (regular -ER)',   ger:'bebiendo',  ex:'Estaba bebiendo agua.'},
+    {verb:'correr',   en:'to run (regular -ER)',     ger:'corriendo', ex:'Está corriendo en el parque.'},
+    {verb:'leer',     en:'to read (regular -ER)',    ger:'leyendo',   ex:'Estoy leyendo un libro.'},
+    {verb:'volver',   en:'to return (o→ue)',         ger:'volviendo', ex:'Están volviendo a casa.'},
+    {verb:'hacer',    en:'to do / to make',          ger:'haciendo',  ex:'¿Qué estás haciendo?'},
+    {verb:'tener',    en:'to have',                  ger:'teniendo',  ex:'Está teniendo problemas.'},
+    {verb:'vivir',    en:'to live (regular -IR)',    ger:'viviendo',  ex:'Estoy viviendo en México.'},
+    {verb:'escribir', en:'to write (regular -IR)',   ger:'escribiendo',ex:'Estaba escribiendo un mensaje.'},
+    {verb:'subir',    en:'to go up (regular -IR)',   ger:'subiendo',  ex:'Estoy subiendo las escaleras.'},
+    {verb:'pedir',    en:'to ask for (e→i)',         ger:'pidiendo',  ex:'Está pidiendo la cuenta.'},
+    {verb:'dormir',   en:'to sleep (o→ue)',          ger:'durmiendo', ex:'El bebé está durmiendo.'},
+    {verb:'servir',   en:'to serve (e→i)',           ger:'sirviendo', ex:'Te estoy sirviendo café.'},
+    {verb:'seguir',   en:'to follow / continue (e→i)',ger:'siguiendo',ex:'Estamos siguiendo el camino.'},
+    {verb:'venir',    en:'to come',                  ger:'viniendo',  ex:'¿Estás viniendo?'},
+    {verb:'decir',    en:'to say / to tell',         ger:'diciendo',  ex:'¿Qué está diciendo?'},
+    {verb:'poder',    en:'to be able to (o→ue)',     ger:'pudiendo',  ex:'No está pudiendo terminar.'},
+    {verb:'ir',       en:'to go',                    ger:'yendo',     ex:'Estoy yendo al trabajo.'},
+    {verb:'estar',    en:'to be (state/location)',   ger:'estando',   ex:'Estando aquí, me siento bien.'},
+    {verb:'ser',      en:'to be (permanent)',        ger:'siendo',    ex:'Está siendo muy amable.'},
+    {verb:'ver',      en:'to see / to watch',        ger:'viendo',    ex:'Estoy viendo la tele.'},
+    {verb:'salir',    en:'to leave / to go out',     ger:'saliendo',  ex:'Está saliendo ahora.'},
+  ],
+  futprox: [
+    {verb:'hablar',   en:'to speak',    conj:{'yo':'voy a hablar','tú':'vas a hablar','él/ella/usted':'va a hablar','nosotros':'vamos a hablar','ustedes':'van a hablar'}},
+    {verb:'comer',    en:'to eat',      conj:{'yo':'voy a comer','tú':'vas a comer','él/ella/usted':'va a comer','nosotros':'vamos a comer','ustedes':'van a comer'}},
+    {verb:'ir',       en:'to go',       conj:{'yo':'voy a ir','tú':'vas a ir','él/ella/usted':'va a ir','nosotros':'vamos a ir','ustedes':'van a ir'}},
+    {verb:'hacer',    en:'to do / to make', conj:{'yo':'voy a hacer','tú':'vas a hacer','él/ella/usted':'va a hacer','nosotros':'vamos a hacer','ustedes':'van a hacer'}},
+    {verb:'tener',    en:'to have',     conj:{'yo':'voy a tener','tú':'vas a tener','él/ella/usted':'va a tener','nosotros':'vamos a tener','ustedes':'van a tener'}},
+    {verb:'ser',      en:'to be',       conj:{'yo':'voy a ser','tú':'vas a ser','él/ella/usted':'va a ser','nosotros':'vamos a ser','ustedes':'van a ser'}},
+    {verb:'estar',    en:'to be (state)', conj:{'yo':'voy a estar','tú':'vas a estar','él/ella/usted':'va a estar','nosotros':'vamos a estar','ustedes':'van a estar'}},
+    {verb:'salir',    en:'to go out',   conj:{'yo':'voy a salir','tú':'vas a salir','él/ella/usted':'va a salir','nosotros':'vamos a salir','ustedes':'van a salir'}},
+    {verb:'llegar',   en:'to arrive',   conj:{'yo':'voy a llegar','tú':'vas a llegar','él/ella/usted':'va a llegar','nosotros':'vamos a llegar','ustedes':'van a llegar'}},
+    {verb:'comprar',  en:'to buy',      conj:{'yo':'voy a comprar','tú':'vas a comprar','él/ella/usted':'va a comprar','nosotros':'vamos a comprar','ustedes':'van a comprar'}},
+    {verb:'trabajar', en:'to work',     conj:{'yo':'voy a trabajar','tú':'vas a trabajar','él/ella/usted':'va a trabajar','nosotros':'vamos a trabajar','ustedes':'van a trabajar'}},
+    {verb:'estudiar', en:'to study',    conj:{'yo':'voy a estudiar','tú':'vas a estudiar','él/ella/usted':'va a estudiar','nosotros':'vamos a estudiar','ustedes':'van a estudiar'}},
+    {verb:'volver',   en:'to return',   conj:{'yo':'voy a volver','tú':'vas a volver','él/ella/usted':'va a volver','nosotros':'vamos a volver','ustedes':'van a volver'}},
+    {verb:'dormir',   en:'to sleep',    conj:{'yo':'voy a dormir','tú':'vas a dormir','él/ella/usted':'va a dormir','nosotros':'vamos a dormir','ustedes':'van a dormir'}},
+    {verb:'vivir',    en:'to live',     conj:{'yo':'voy a vivir','tú':'vas a vivir','él/ella/usted':'va a vivir','nosotros':'vamos a vivir','ustedes':'van a vivir'}},
+    {verb:'llamar',   en:'to call',     conj:{'yo':'voy a llamar','tú':'vas a llamar','él/ella/usted':'va a llamar','nosotros':'vamos a llamar','ustedes':'van a llamar'}},
+    {verb:'ver',      en:'to see / watch', conj:{'yo':'voy a ver','tú':'vas a ver','él/ella/usted':'va a ver','nosotros':'vamos a ver','ustedes':'van a ver'}},
+    {verb:'poder',    en:'to be able to', conj:{'yo':'voy a poder','tú':'vas a poder','él/ella/usted':'va a poder','nosotros':'vamos a poder','ustedes':'van a poder'}},
+    {verb:'pedir',    en:'to ask for',  conj:{'yo':'voy a pedir','tú':'vas a pedir','él/ella/usted':'va a pedir','nosotros':'vamos a pedir','ustedes':'van a pedir'}},
+    {verb:'empezar',  en:'to start (e→ie)', conj:{'yo':'voy a empezar','tú':'vas a empezar','él/ella/usted':'va a empezar','nosotros':'vamos a empezar','ustedes':'van a empezar'}},
+    {verb:'terminar', en:'to finish',   conj:{'yo':'voy a terminar','tú':'vas a terminar','él/ella/usted':'va a terminar','nosotros':'vamos a terminar','ustedes':'van a terminar'}},
+    {verb:'jugar',    en:'to play (u→ue)', conj:{'yo':'voy a jugar','tú':'vas a jugar','él/ella/usted':'va a jugar','nosotros':'vamos a jugar','ustedes':'van a jugar'}},
+    {verb:'cocinar',  en:'to cook',     conj:{'yo':'voy a cocinar','tú':'vas a cocinar','él/ella/usted':'va a cocinar','nosotros':'vamos a cocinar','ustedes':'van a cocinar'}},
+    {verb:'viajar',   en:'to travel',   conj:{'yo':'voy a viajar','tú':'vas a viajar','él/ella/usted':'va a viajar','nosotros':'vamos a viajar','ustedes':'van a viajar'}},
+    {verb:'aprender', en:'to learn',    conj:{'yo':'voy a aprender','tú':'vas a aprender','él/ella/usted':'va a aprender','nosotros':'vamos a aprender','ustedes':'van a aprender'}},
+  ],
 };
 
 // Per-tense state: deck, index, flipped
 const tenseDeckState = {
-  pres: { deck:[], idx:0, flipped:false },
-  fut:  { deck:[], idx:0, flipped:false },
-  pret: { deck:[], idx:0, flipped:false },
-  imp:  { deck:[], idx:0, flipped:false },
-  subj: { deck:[], idx:0, flipped:false },
-  cond: { deck:[], idx:0, flipped:false },
+  pres:    { deck:[], idx:0, flipped:false },
+  fut:     { deck:[], idx:0, flipped:false },
+  pret:    { deck:[], idx:0, flipped:false },
+  imp:     { deck:[], idx:0, flipped:false },
+  subj:    { deck:[], idx:0, flipped:false },
+  cond:    { deck:[], idx:0, flipped:false },
+  ger:     { deck:[], idx:0, flipped:false },
+  futprox: { deck:[], idx:0, flipped:false },
 };
 
 function initTenseScreen(t) {
@@ -6414,6 +6562,8 @@ function enForTense(rawEn, tense) {
   }
   if (tense === 'pres') { return core; }
   if (tense === 'fut')  { return 'will ' + core; }
+  if (tense === 'ger')     { return 'being / -ing form of: ' + core; }
+  if (tense === 'futprox') { return 'going to ' + core; }
   return rawEn; // fallback
 }
 
@@ -6450,16 +6600,24 @@ function showTenseCard(t) {
     cond: ['would','would','would','would','would']
   };
   let html = '';
-  const entries = Object.entries(v.conj);
-  entries.forEach(([pr, conj], i) => {
-    const enSubject = PR_EN[pr] || pr;
-    html += `<div class="verb-row"><span class="pronoun">${pr}</span><span class="conjugation">${conj}</span></div>`;
-  });
-  document.getElementById(t + '-table').innerHTML = html;
+  if (t === 'ger') {
+    // Gerundio card: show the gerundio form + example on the back
+    html = `<div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,7vw,4rem);color:var(--accent3);line-height:1;margin-bottom:12px;">${v.ger}</div>` +
+           `<div style="font-size:1rem;color:var(--text-sub);font-style:italic;margin-bottom:10px;">${v.verb} → ${v.ger}</div>` +
+           (v.ex ? `<div style="font-size:1.05rem;color:var(--text-main);margin-top:8px;">"${v.ex}"</div>` : '');
+    document.getElementById(t + '-table').innerHTML = html;
+    card.dataset.speakFront = v.verb;
+    card.dataset.speakBack = JSON.stringify([v.ger, v.ex || '']);
+  } else {
+    const entries = Object.entries(v.conj);
+    entries.forEach(([pr, conj], i) => {
+      html += `<div class="verb-row"><span class="pronoun">${pr}</span><span class="conjugation">${conj}</span></div>`;
+    });
+    document.getElementById(t + '-table').innerHTML = html;
+    card.dataset.speakFront = v.verb;
+    card.dataset.speakBack = JSON.stringify(Object.entries(v.conj).map(([pr,c]) => pr + ' ' + c));
+  }
   document.getElementById(t + '-progress').textContent = `Card ${s.idx+1} / ${s.deck.length}`;
-  // Stamp speak data
-  card.dataset.speakFront = v.verb;
-  card.dataset.speakBack = JSON.stringify(Object.entries(v.conj).map(([pr,c]) => pr + ' ' + c));
   card.style.animation = 'none'; card.offsetHeight; card.style.animation = '';
   updateFavButtons(); updateRetireButtons();
 }
@@ -6506,7 +6664,7 @@ function shuffleTenseDeck(t) {
 function buildTenseFavCard(t) {
   const s = tenseDeckState[t];
   const v = s.deck[s.idx];
-  const tenseNames = { pres:'Present', fut:'Future', pret:'Pretérito Indefinido', imp:'Imperfect', subj:'Present Subjunctive', cond:'Conditional' };
+  const tenseNames = { pres:'Present', fut:'Future', pret:'Pretérito Indefinido', imp:'Imperfect', subj:'Present Subjunctive', cond:'Conditional', ger:'Gerundio', futprox:'Futuro Próximo' };
   const tenseName = tenseNames[t] || t;
   const tenseHTML = `<span class="tense-badge">${tenseName}</span>`;
   let tableHTML = '';
@@ -6590,7 +6748,7 @@ function toggleFav(type) {
     let card;
     if (type === 'vocab') card = buildVocabFavCard();
     else if (type === 't150') card = buildT150FavCard();
-    else if (['pres','fut','pret','imp','subj','cond'].includes(type)) card = buildTenseFavCard(type);
+    else if (['pres','fut','pret','imp','subj','cond','ger','futprox'].includes(type)) card = buildTenseFavCard(type);
     else if (type === 'fav') {
       favs.splice(favIdx, 1);
       saveFavs();
@@ -7014,7 +7172,7 @@ function buildQuizDeck(deckVal, skipRetireFilter) {
         question: v.en,
         questionSub: '→ What is this in Spanish?',
         answer: v.es,
-        pool: items,
+        pool: items.map(function(w) { return w.es; }).filter(Boolean),
         cardId: 'v_' + (cat||'x') + '_' + idx + '_' + (v.es||'').replace(/\s+/g,'_').slice(0,20),
         type: 'vocab'
       });
@@ -7040,7 +7198,7 @@ function buildQuizDeck(deckVal, skipRetireFilter) {
     });
   } else if (deckVal.startsWith('tense_')) {
     const t = deckVal.replace('tense_', '');
-    const tenseNames = {pres:'Present', fut:'Future', pret:'Pretérito', imp:'Imperfect', subj:'Subjunctive', cond:'Conditional'};
+    const tenseNames = {pres:'Present', fut:'Future', pret:'Pretérito', imp:'Imperfect', subj:'Subjunctive', cond:'Conditional', ger:'Gerundio', futprox:'Futuro Próximo'};
     const deck = TENSE_DECKS[t] || [];
     const pronouns = ['yo','tú','él/ella/usted','nosotros','ustedes'];
     const prEN = {'yo':'I','tú':'you','él/ella/usted':'he/she/you','nosotros':'we','ustedes':'you all'};
@@ -7106,7 +7264,7 @@ function buildQuizDeck(deckVal, skipRetireFilter) {
           question: v.frontMain,
           questionSub: '→ What is this in Spanish?',
           answer: v.speakText || '',
-          pool: favsList.filter(f => f.type === 'vocab').map(f => f.speakText).filter(Boolean),
+          pool: favsList.filter(f => f.type === 'vocab').map(f => f.speakText || '').filter(Boolean),
           cardId: 'fav_' + (v.id||'').replace(/\s+/g,'_'),
           type: 'fav_vocab'
         });
@@ -7184,18 +7342,7 @@ function getDistractors(card, allCards, count) {
 
   // Top up with fallback pool if needed (other verbs same tense)
   if (wrong.length < count) {
-    // Some quiz pools contain full card objects (e.g. TOP150/VOCAB),
-    // while others already contain answer strings. Normalize everything
-    // to the actual answer before using it as an option.
     const fallback = (card.pool || [])
-      .map(function(item) {
-        if (typeof item === 'string') return item;
-        if (card.type === 'top150' && item && typeof item.verb === 'string') return item.verb;
-        if ((card.type === 'vocab' || card.type === 'fav_vocab') && item && typeof item.es === 'string') return item.es;
-        if (item && typeof item.answer === 'string') return item.answer;
-        return null;
-      })
-      .filter(Boolean)
       .filter(a => a !== card.answer && !wrong.includes(a));
     wrong = [...wrong, ...fallback];
   }
@@ -8016,7 +8163,7 @@ function updateMasteredIndicators() {
 
 function updateNavBtnPct(screenId, r) {
   var btns = document.querySelectorAll('.nav-btn');
-  var map = {top150:0, pres:0, fut:0, pret:0, imp:0, subj:0, cond:0, favs:4, mastered:5, quiz:6};
+  var map = {top150:0, pres:0, fut:0, pret:0, imp:0, subj:0, cond:0, ger:0, futprox:0, favs:4, mastered:5, quiz:6};
   var idx = map[screenId];
   if (idx === undefined) return;
   var btn = btns[idx];
