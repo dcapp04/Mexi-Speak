@@ -2007,6 +2007,11 @@
           <div class="hub-tile-name">Conditional</div>
           <div class="hub-tile-count">25 verbs</div>
         </div>
+        <div class="hub-tile" onclick="showScreen('imp2')">
+          <div class="hub-tile-emoji">⚡</div>
+          <div class="hub-tile-name">Imperativo</div>
+          <div class="hub-tile-count">40 verbs</div>
+        </div>
         <div class="hub-tile" onclick="showScreen('ger')">
           <div class="hub-tile-emoji">🔄</div>
           <div class="hub-tile-name">Gerundio (-ndo)</div>
@@ -2385,7 +2390,45 @@
     </div>
 
 
-<div id="screen-ger" class="screen screen-tense">
+<div id="screen-imp2" class="screen screen-tense">
+      <div class="tense-screen-header">
+        <h2>⚡ Top 40 — Imperativo (Commands)</h2>
+        <span id="imp2-progress" style="color:var(--accent2);font-weight:800;font-size:1.05rem;"></span>
+      </div>
+      <div class="card-nav-wrap">
+        <button class="nav-arrow" style="border-color:var(--accent2);color:var(--accent2);background:rgba(255,215,0,0.1);" onclick="prevTenseCard('imp2')">&#8592;</button>
+        <div class="flashcard tense-card" id="imp2-card" onclick="flipTenseCard('imp2')">
+          <div class="card-face card-front tense-front" id="imp2-front">
+            <div class="card-label" style="color:var(--accent2);">ENGLISH — TAP TO FLIP</div>
+            <div class="tense-rank" id="imp2-rank" style="color:var(--accent2);"></div>
+            <div class="card-main-text tense-en" id="imp2-en"></div>
+            <div id="imp2-reg-badge" class="reg-badge" style="display:none;"></div>
+            <div class="card-hint">👆 Tap to see Conditional conjugation</div>
+          </div>
+          <div class="card-face card-back tense-back" id="imp2-back" style="border-color:var(--accent2);">
+            <div class="tense-infinitive" id="imp2-verb"></div>
+            <div class="tense-label-pill" style="background:rgba(255,215,0,0.18);color:var(--accent2);border-color:var(--accent2);">Conditional</div>
+            <div class="card-back-content" id="imp2-table"></div>
+          </div>
+        </div>
+        <button class="nav-arrow" style="border-color:var(--accent2);color:var(--accent2);background:rgba(255,215,0,0.1);" onclick="nextTenseCard('imp2')">&#8594;</button>
+      </div>
+      <div class="answer-btns" id="imp2-answer-btns" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;">
+        <button class="fav-btn" id="imp2-fav-btn" onclick="toggleFav('imp2')" title="Add to Favourites">☆</button>
+        <button class="retire-btn" id="imp2-retire-btn" onclick="toggleRetire('imp2')" title="Retire — never show again" style="padding:14px 22px;border-radius:14px;background:#4ecdc4;border-color:#4ecdc4;color:#fff;font-size:1.8rem;">🔥 Mastered</button>
+        <button class="speak-btn" id="imp2-speak-btn" onclick="speakCard('imp2-card', document.getElementById('imp2-verb').textContent, this)" title="Front: speak infinitive · Back: speak all conjugations">🔊</button>
+        <button class="ans-btn ans-flip" onclick="flipTenseCard('imp2')">🔄 Flip</button>
+        <div class="sa-btns">
+          <button class="sa-btn sa-got"  onclick="selfAssess('imp2', true)">✅ Got it</button>
+          <button class="sa-btn sa-miss" onclick="selfAssess('imp2', false)">❌ Missed it</button>
+        </div>
+        <button class="ans-btn ans-shuffle" onclick="shuffleTenseDeck('imp2')">🔀 Shuffle</button>
+      </div>
+    </div>
+
+
+<div 
+id="screen-ger" class="screen screen-tense">
       <div class="tense-screen-header">
         <h2>🔄 Top 30 — Gerundio (-ndo form)</h2>
         <span id="ger-progress" style="color:var(--accent2);font-weight:800;font-size:1.05rem;"></span>
@@ -4448,8 +4491,6 @@ const VOCAB = {
     {es:'el orgullo',en:'pride',ex:'',note:'',rank:209},
     {es:'la envidia',en:'envy',ex:'',note:'',rank:210},
     {es:'el estrés',en:'stress',ex:'',note:'',rank:211},
-    {es:'la ansiedad',en:'anxiety',ex:'',note:'',rank:212},
-    {es:'la depresión',en:'depression',ex:'',note:'',rank:213},
     {es:'la felicidad',en:'happiness',ex:'',note:'',rank:214},
     {es:'el sueño',en:'dream / sleep',ex:'',note:'',rank:215},
     {es:'el pensamiento',en:'thought',ex:'',note:'',rank:216},
@@ -4546,12 +4587,8 @@ const VOCAB = {
     {es:'la costa',en:'coast',ex:'',note:'',rank:307},
     {es:'la isla',en:'island',ex:'',note:'',rank:308},
     {es:'el desierto',en:'desert',ex:'',note:'',rank:309},
-    {es:'el volcán',en:'volcano',ex:'',note:'',rank:310},
-    {es:'el terremoto',en:'earthquake',ex:'',note:'',rank:311},
     {es:'la tormenta',en:'storm',ex:'',note:'',rank:312},
     {es:'la nube',en:'cloud',ex:'',note:'',rank:313},
-    {es:'la niebla',en:'fog',ex:'',note:'',rank:314},
-    {es:'la nieve',en:'snow',ex:'',note:'',rank:315},
     {es:'la ropa',en:'clothes / clothing',ex:'',note:'',rank:316},
     {es:'la camisa',en:'shirt',ex:'',note:'',rank:317},
     {es:'la camiseta',en:'t-shirt',ex:'',note:'',rank:318},
@@ -4607,14 +4644,6 @@ const VOCAB = {
     {es:'la política',en:'politics',ex:'',note:'',rank:368},
     {es:'la sociedad',en:'society',ex:'',note:'',rank:369},
     {es:'la comunidad',en:'community',ex:'',note:'',rank:370},
-    {es:'la sangre',en:'blood',ex:'',note:'',rank:371},
-    {es:'el hueso',en:'bone',ex:'',note:'',rank:372},
-    {es:'el músculo',en:'muscle',ex:'',note:'',rank:373},
-    {es:'la piel',en:'skin',ex:'',note:'',rank:374},
-    {es:'el cerebro',en:'brain',ex:'',note:'',rank:375},
-    {es:'el pulmón',en:'lung',ex:'',note:'',rank:376},
-    {es:'el hígado',en:'liver',ex:'',note:'',rank:377},
-    {es:'el riñón',en:'kidney',ex:'',note:'',rank:378},
     {es:'la violencia',en:'violence',ex:'',note:'',rank:379},
     {es:'el crimen',en:'crime',ex:'',note:'',rank:380},
     {es:'el robo',en:'robbery / theft',ex:'',note:'',rank:381},
@@ -4736,7 +4765,21 @@ const VOCAB = {
     {es:'la práctica',en:'practice',ex:'La práctica hace al maestro.',note:'',rank:497},
     {es:'el ejercicio',en:'exercise',ex:'Hago ejercicio todos los días.',note:'',rank:498},
     {es:'la frase',en:'phrase / sentence',ex:'Repite esta frase en voz alta.',note:'',rank:499},
-    {es:'el motivo',en:'motive / reason / motif',ex:'¿Cuál fue el motivo?',note:'',rank:500}
+    {es:'el motivo',en:'motive / reason / motif',ex:'¿Cuál fue el motivo?',note:'',rank:500},
+    {es:'el semáforo',en:'traffic light',ex:'El semáforo está en rojo.',note:'very common in MX driving',rank:1424},
+    {es:'la esquina',en:'corner (street)',ex:'Te espero en la esquina.',note:'',rank:1425},
+    {es:'el cajero automático',en:'ATM / cash machine',ex:'Voy al cajero a sacar dinero.',note:'cajero alone also means teller',rank:1426},
+    {es:'el recibo',en:'receipt',ex:'¿Me da su recibo?',note:'',rank:1427},
+    {es:'la propina',en:'tip (gratuity)',ex:'La propina no está incluida.',note:'essential in Mexican restaurants',rank:1428},
+    {es:'el taco',en:'taco',ex:'Me como unos tacos de canasta.',note:'iconic MX food',rank:1429},
+    {es:'el/la mesero/a',en:'waiter / waitress',ex:'¡Mesero, la cuenta por favor!',note:'',rank:1430},
+    {es:'la cuadra',en:'city block',ex:'Está a dos cuadras de aquí.',note:'',rank:1431},
+    {es:'la basura',en:'trash / garbage',ex:'Saca la basura, por favor.',note:'',rank:1432},
+    {es:'la bronca',en:'problem / fight / hassle (MX)',ex:'No hay bronca.',note:'very MX: no hay bronca = no problem',rank:1433},
+    {es:'el portón',en:'gate / large door',ex:'Toca el portón cuando llegues.',note:'',rank:1434},
+    {es:'la reja',en:'iron bars / gate / fence',ex:'La reja está cerrada con llave.',note:'common in MX homes',rank:1435},
+    {es:'la tortería',en:'sandwich shop (MX)',ex:'Vamos a la tortería de la esquina.',note:'MX-specific',rank:1436},
+    {es:'el elote',en:'corn on the cob (MX street food)',ex:'Un elote con chile y limón.',note:'quintessential MX street food',rank:1437},
   ],
 };
 
@@ -4914,6 +4957,320 @@ const TOP150 = [
   {rank:169,verb:'repetir',en:'to repeat',freq:'★★★★★',reg:'stem-change'},
 ];
 
+const VOCAB_SYNONYMS = {
+  'a propósito': ['retire_vocab_adverbs_69', 'retire_vocab_connectors_52'],
+  'aburrido/aburrida': ['retire_vocab_adjectives_60', 'retire_vocab_emotions_11'],
+  'ahorita': ['retire_vocab_adverbs_28', 'retire_vocab_slang_20'],
+  'antiguo/antigua': ['retire_vocab_adjectives_133', 'retire_vocab_adjectives_161'],
+  'asustado/asustada': ['retire_vocab_adjectives_63', 'retire_vocab_emotions_4'],
+  'aunque': ['retire_vocab_adverbs_58', 'retire_vocab_connectors_10'],
+  'avergonzado/avergonzada': ['retire_vocab_adjectives_67', 'retire_vocab_emotions_13'],
+  'buena onda': ['retire_vocab_adjectives_186', 'retire_vocab_slang_18'],
+  'cansado/cansada': ['retire_vocab_adjectives_59', 'retire_vocab_emotions_10'],
+  'celoso/celosa': ['retire_vocab_adjectives_196', 'retire_vocab_emotions_15'],
+  'claro/clara': ['retire_vocab_colors_15', 'retire_vocab_adjectives_32'],
+  'de hecho': ['retire_vocab_adverbs_70', 'retire_vocab_connectors_49'],
+  'el Día de Muertos': ['retire_vocab_nouns_culture_240', 'retire_vocab_nouns_culture_603'],
+  'el abuelo / la abuela': ['retire_vocab_family_6', 'retire_vocab_nouns_top500_11'],
+  'el accidente': ['retire_vocab_travel_transport_1417', 'retire_vocab_nouns_top500_474'],
+  'el aeropuerto': ['retire_vocab_travel_transport_1', 'retire_vocab_nouns_top500_128'],
+  'el agua': ['retire_vocab_nouns_food_86', 'retire_vocab_nouns_nature_322', 'retire_vocab_nouns_top500_88'],
+  'el aire': ['retire_vocab_nouns_nature_324', 'retire_vocab_nouns_top500_302'],
+  'el almuerzo': ['retire_vocab_nouns_food_83', 'retire_vocab_nouns_top500_86'],
+  'el alumno / la alumna': ['retire_vocab_nouns_work_106', 'retire_vocab_nouns_top500_108'],
+  'el amor': ['retire_vocab_emotions_39', 'retire_vocab_nouns_top500_200'],
+  'el animal': ['retire_vocab_nouns_nature_154', 'retire_vocab_nouns_top500_156'],
+  'el análisis': ['retire_vocab_nouns_health_617', 'retire_vocab_nouns_top500_356'],
+  'el apoyo': ['retire_vocab_nouns_society_490', 'retire_vocab_nouns_top500_418'],
+  'el arroz': ['retire_vocab_nouns_food_91', 'retire_vocab_nouns_top500_93'],
+  'el avión': ['retire_vocab_travel_transport_2', 'retire_vocab_nouns_top500_127'],
+  'el año': ['retire_vocab_numbers_time_29', 'retire_vocab_nouns_top500_46'],
+  'el banco': ['retire_vocab_nouns_work_118', 'retire_vocab_nouns_top500_120'],
+  'el baño': ['retire_vocab_nouns_home_66', 'retire_vocab_nouns_top500_69'],
+  'el bebé': ['retire_vocab_family_11', 'retire_vocab_nouns_top500_5'],
+  'el bosque': ['retire_vocab_nouns_nature_327', 'retire_vocab_nouns_top500_305'],
+  'el brazo': ['retire_vocab_nouns_health_508', 'retire_vocab_nouns_top500_31'],
+  'el café': ['retire_vocab_nouns_food_87', 'retire_vocab_nouns_top500_89'],
+  'el cajero automático': ['retire_vocab_travel_transport_61', 'retire_vocab_nouns_top500_1426'],
+  'el calor': ['retire_vocab_nouns_nature_147', 'retire_vocab_nouns_top500_149'],
+  'el cambio': ['retire_vocab_shopping_9', 'retire_vocab_shopping_209', 'retire_vocab_nouns_top500_177'],
+  'el camión': ['retire_vocab_travel_transport_10', 'retire_vocab_nouns_top500_124'],
+  'el campo': ['retire_vocab_nouns_nature_328', 'retire_vocab_nouns_top500_234'],
+  'el carro / el coche': ['retire_vocab_travel_transport_1121', 'retire_vocab_nouns_top500_123'],
+  'el celular': ['retire_vocab_technology_2', 'retire_vocab_nouns_top500_160'],
+  'el chile': ['retire_vocab_nouns_food_94', 'retire_vocab_nouns_top500_96'],
+  'el cielo': ['retire_vocab_nouns_nature_143', 'retire_vocab_nouns_top500_145'],
+  'el cine': ['retire_vocab_nouns_culture_304', 'retire_vocab_nouns_culture_611', 'retire_vocab_nouns_top500_286'],
+  'el compañero / la compañera': ['retire_vocab_nouns_work_402', 'retire_vocab_nouns_top500_19'],
+  'el concierto': ['retire_vocab_nouns_culture_315', 'retire_vocab_nouns_culture_610', 'retire_vocab_nouns_top500_295'],
+  'el contrato': ['retire_vocab_nouns_work_404', 'retire_vocab_nouns_top500_360'],
+  'el corazón': ['retire_vocab_nouns_health_501', 'retire_vocab_nouns_top500_40'],
+  'el crimen': ['retire_vocab_nouns_society_437', 'retire_vocab_nouns_top500_380'],
+  'el crucero': ['retire_vocab_travel_transport_1388', 'retire_vocab_travel_transport_1414'],
+  'el cuaderno': ['retire_vocab_nouns_work_108', 'retire_vocab_nouns_top500_110'],
+  'el cuadro': ['retire_vocab_nouns_home_452', 'retire_vocab_nouns_top500_394'],
+  'el cuarto': ['retire_vocab_nouns_home_63', 'retire_vocab_nouns_top500_66'],
+  'el cuello': ['retire_vocab_nouns_health_506', 'retire_vocab_nouns_top500_29'],
+  'el dedo': ['retire_vocab_nouns_health_512', 'retire_vocab_nouns_top500_33'],
+  'el departamento / el depa': ['retire_vocab_nouns_home_62', 'retire_vocab_nouns_top500_65'],
+  'el deporte': ['retire_vocab_nouns_culture_306', 'retire_vocab_nouns_culture_608', 'retire_vocab_nouns_top500_287'],
+  'el desayuno': ['retire_vocab_nouns_food_82', 'retire_vocab_nouns_top500_85'],
+  'el descanso': ['retire_vocab_nouns_culture_311', 'retire_vocab_nouns_top500_292'],
+  'el desierto': ['retire_vocab_nouns_nature_332', 'retire_vocab_nouns_top500_309'],
+  'el destino': ['retire_vocab_travel_transport_43', 'retire_vocab_nouns_top500_278'],
+  'el dinero': ['retire_vocab_nouns_work_115', 'retire_vocab_nouns_top500_117'],
+  'el dolor': ['retire_vocab_nouns_health_137', 'retire_vocab_nouns_top500_139'],
+  'el día': ['retire_vocab_numbers_time_26', 'retire_vocab_nouns_top500_42'],
+  'el efectivo': ['retire_vocab_shopping_10', 'retire_vocab_nouns_work_120', 'retire_vocab_nouns_top500_122'],
+  'el elote': ['retire_vocab_nouns_food_640', 'retire_vocab_nouns_top500_1437'],
+  'el enojo': ['retire_vocab_emotions_33', 'retire_vocab_nouns_top500_204'],
+  'el espacio': ['retire_vocab_technology_55', 'retire_vocab_nouns_top500_256'],
+  'el espejo': ['retire_vocab_nouns_home_450', 'retire_vocab_nouns_top500_392'],
+  'el esposo / la esposa': ['retire_vocab_family_9', 'retire_vocab_nouns_top500_14'],
+  'el estacionamiento': ['retire_vocab_travel_transport_1130', 'retire_vocab_nouns_top500_132'],
+  'el estrés': ['retire_vocab_emotions_47', 'retire_vocab_nouns_health_601', 'retire_vocab_nouns_top500_211'],
+  'el estómago': ['retire_vocab_nouns_health_502', 'retire_vocab_nouns_top500_36'],
+  'el evento': ['retire_vocab_nouns_culture_313', 'retire_vocab_nouns_top500_294'],
+  'el examen': ['retire_vocab_nouns_work_110', 'retire_vocab_nouns_top500_112'],
+  'el favor': ['retire_vocab_nouns_society_492', 'retire_vocab_nouns_top500_420'],
+  'el frijol': ['retire_vocab_nouns_food_92', 'retire_vocab_nouns_top500_94'],
+  'el frío': ['retire_vocab_nouns_nature_146', 'retire_vocab_nouns_top500_148'],
+  'el fuego': ['retire_vocab_nouns_nature_323', 'retire_vocab_nouns_top500_301'],
+  'el fútbol': ['retire_vocab_nouns_culture_307', 'retire_vocab_nouns_top500_288'],
+  'el gato': ['retire_vocab_nouns_nature_156', 'retire_vocab_nouns_top500_158'],
+  'el hermano / la hermana': ['retire_vocab_family_5', 'retire_vocab_nouns_top500_10'],
+  'el hijo / la hija': ['retire_vocab_family_4', 'retire_vocab_nouns_top500_9'],
+  'el hobby': ['retire_vocab_nouns_culture_309', 'retire_vocab_nouns_top500_290'],
+  'el hombro': ['retire_vocab_nouns_health_507', 'retire_vocab_nouns_top500_30'],
+  'el horario': ['retire_vocab_nouns_work_405', 'retire_vocab_nouns_top500_401'],
+  'el hospital': ['retire_vocab_nouns_health_133', 'retire_vocab_nouns_top500_135'],
+  'el hotel': ['retire_vocab_travel_transport_5', 'retire_vocab_nouns_top500_328'],
+  'el internet': ['retire_vocab_technology_11', 'retire_vocab_nouns_top500_162'],
+  'el jardín': ['retire_vocab_nouns_home_78', 'retire_vocab_nouns_top500_81'],
+  'el jefe / la jefa': ['retire_vocab_nouns_work_401', 'retire_vocab_nouns_top500_18'],
+  'el juego': ['retire_vocab_nouns_culture_308', 'retire_vocab_nouns_top500_289'],
+  'el jugo': ['retire_vocab_nouns_food_88', 'retire_vocab_nouns_top500_90'],
+  'el lago': ['retire_vocab_nouns_nature_329', 'retire_vocab_nouns_top500_306'],
+  'el libro': ['retire_vocab_nouns_work_107', 'retire_vocab_nouns_top500_109'],
+  'el maestro / la maestra': ['retire_vocab_nouns_work_105', 'retire_vocab_nouns_top500_107'],
+  'el mar': ['retire_vocab_nouns_nature_149', 'retire_vocab_nouns_top500_151'],
+  'el mercado': ['retire_vocab_shopping_2', 'retire_vocab_nouns_top500_63'],
+  'el mes': ['retire_vocab_numbers_time_28', 'retire_vocab_nouns_top500_45'],
+  'el metro': ['retire_vocab_travel_transport_11', 'retire_vocab_nouns_top500_125'],
+  'el miedo': ['retire_vocab_emotions_34', 'retire_vocab_nouns_top500_201'],
+  'el milagro': ['retire_vocab_nouns_society_499', 'retire_vocab_nouns_top500_423'],
+  'el mundo': ['retire_vocab_nouns_society_181', 'retire_vocab_nouns_top500_182'],
+  'el museo': ['retire_vocab_travel_transport_69', 'retire_vocab_nouns_culture_317', 'retire_vocab_nouns_culture_613', 'retire_vocab_nouns_top500_297'],
+  'el médico / la médica': ['retire_vocab_nouns_health_132', 'retire_vocab_nouns_top500_134'],
+  'el negocio': ['retire_vocab_nouns_work_112', 'retire_vocab_nouns_top500_114'],
+  'el niño / la niña': ['retire_vocab_family_12', 'retire_vocab_nouns_top500_4'],
+  'el nombre': ['retire_vocab_nouns_society_184', 'retire_vocab_nouns_top500_185'],
+  'el novio / la novia': ['retire_vocab_family_10', 'retire_vocab_nouns_top500_15'],
+  'el número': ['retire_vocab_shopping_13', 'retire_vocab_shopping_207', 'retire_vocab_nouns_top500_237'],
+  'el ojo': ['retire_vocab_nouns_health_525', 'retire_vocab_nouns_top500_23'],
+  'el orgullo': ['retire_vocab_emotions_36', 'retire_vocab_nouns_top500_209'],
+  'el pan': ['retire_vocab_nouns_food_90', 'retire_vocab_nouns_top500_92'],
+  'el pantalón': ['retire_vocab_clothing_342', 'retire_vocab_nouns_top500_319'],
+  'el papá / el padre': ['retire_vocab_family_2', 'retire_vocab_nouns_top500_7'],
+  'el paraguas': ['retire_vocab_nouns_home_448', 'retire_vocab_nouns_top500_390'],
+  'el partido': ['retire_vocab_nouns_culture_305', 'retire_vocab_nouns_top500_195'],
+  'el pecho': ['retire_vocab_nouns_health_514', 'retire_vocab_nouns_top500_34'],
+  'el periódico': ['retire_vocab_nouns_society_188', 'retire_vocab_nouns_top500_189'],
+  'el permiso': ['retire_vocab_nouns_work_408', 'retire_vocab_nouns_top500_478'],
+  'el perro': ['retire_vocab_nouns_nature_155', 'retire_vocab_nouns_top500_157'],
+  'el pescado': ['retire_vocab_nouns_food_98', 'retire_vocab_nouns_top500_100'],
+  'el pie': ['retire_vocab_nouns_health_521', 'retire_vocab_nouns_top500_39'],
+  'el piso': ['retire_vocab_nouns_home_74', 'retire_vocab_nouns_top500_77'],
+  'el pollo': ['retire_vocab_nouns_food_97', 'retire_vocab_nouns_top500_99'],
+  'el precio': ['retire_vocab_shopping_3', 'retire_vocab_nouns_work_116', 'retire_vocab_nouns_top500_118'],
+  'el primo / la prima': ['retire_vocab_family_8', 'retire_vocab_nouns_top500_13'],
+  'el puente': ['retire_vocab_travel_transport_1369', 'retire_vocab_nouns_top500_333'],
+  'el recibo': ['retire_vocab_shopping_8', 'retire_vocab_nouns_top500_1427'],
+  'el refrigerador / el refri': ['retire_vocab_nouns_home_80', 'retire_vocab_nouns_top500_83'],
+  'el reloj': ['retire_vocab_nouns_home_449', 'retire_vocab_nouns_top500_391'],
+  'el restaurante': ['retire_vocab_nouns_food_711', 'retire_vocab_nouns_top500_329'],
+  'el robo': ['retire_vocab_nouns_society_438', 'retire_vocab_nouns_top500_381'],
+  'el río': ['retire_vocab_nouns_nature_148', 'retire_vocab_nouns_top500_150'],
+  'el secreto': ['retire_vocab_nouns_society_483', 'retire_vocab_nouns_top500_414'],
+  'el semáforo': ['retire_vocab_travel_transport_1390', 'retire_vocab_nouns_top500_1424'],
+  'el sillón': ['retire_vocab_nouns_home_72', 'retire_vocab_nouns_top500_75'],
+  'el sistema': ['retire_vocab_technology_61', 'retire_vocab_nouns_top500_245'],
+  'el sofá': ['retire_vocab_nouns_home_73', 'retire_vocab_nouns_top500_76'],
+  'el sol': ['retire_vocab_nouns_nature_141', 'retire_vocab_nouns_top500_143'],
+  'el sombrero': ['retire_vocab_clothing_349', 'retire_vocab_nouns_top500_326'],
+  'el sueldo': ['retire_vocab_nouns_work_114', 'retire_vocab_nouns_top500_116'],
+  'el suéter': ['retire_vocab_clothing_348', 'retire_vocab_nouns_top500_325'],
+  'el taco': ['retire_vocab_nouns_food_633', 'retire_vocab_nouns_top500_1429'],
+  'el tapete': ['retire_vocab_nouns_home_455', 'retire_vocab_nouns_top500_397'],
+  'el taxi': ['retire_vocab_travel_transport_9', 'retire_vocab_nouns_top500_126'],
+  'el teatro': ['retire_vocab_nouns_culture_316', 'retire_vocab_nouns_culture_612', 'retire_vocab_nouns_top500_296'],
+  'el techo': ['retire_vocab_nouns_home_76', 'retire_vocab_nouns_top500_79'],
+  'el teléfono': ['retire_vocab_technology_1', 'retire_vocab_nouns_top500_159'],
+  'el tianguis': ['retire_vocab_shopping_16', 'retire_vocab_nouns_culture_230'],
+  'el trabajo': ['retire_vocab_nouns_work_101', 'retire_vocab_nouns_top500_103'],
+  'el tráfico / el tránsito': ['retire_vocab_travel_transport_1128', 'retire_vocab_nouns_top500_130'],
+  'el tío / la tía': ['retire_vocab_family_7', 'retire_vocab_nouns_top500_12'],
+  'el túnel': ['retire_vocab_travel_transport_1370', 'retire_vocab_nouns_top500_334'],
+  'el vestido': ['retire_vocab_clothing_343', 'retire_vocab_nouns_top500_320'],
+  'el viaje': ['retire_vocab_travel_transport_42', 'retire_vocab_nouns_top500_279'],
+  'el viento': ['retire_vocab_nouns_nature_145', 'retire_vocab_nouns_top500_147'],
+  'el árbol': ['retire_vocab_nouns_nature_151', 'retire_vocab_nouns_top500_153'],
+  'emocionado/emocionada': ['retire_vocab_adjectives_64', 'retire_vocab_emotions_6'],
+  'en cambio': ['retire_vocab_adverbs_96', 'retire_vocab_connectors_40'],
+  'en general': ['retire_vocab_adverbs_86', 'retire_vocab_connectors_45'],
+  'en particular': ['retire_vocab_adverbs_87', 'retire_vocab_connectors_46'],
+  'en realidad': ['retire_vocab_adverbs_84', 'retire_vocab_connectors_50'],
+  'enojado/enojada': ['retire_vocab_adjectives_57', 'retire_vocab_emotions_3'],
+  'feliz': ['retire_vocab_adjectives_58', 'retire_vocab_emotions_1'],
+  'igual': ['retire_vocab_adjectives_25', 'retire_vocab_adverbs_63'],
+  'incómodo/incómoda': ['retire_vocab_adjectives_153', 'retire_vocab_emotions_29'],
+  'la alegría': ['retire_vocab_emotions_31', 'retire_vocab_nouns_top500_202'],
+  'la arena': ['retire_vocab_nouns_nature_326', 'retire_vocab_nouns_top500_304'],
+  'la avenida': ['retire_vocab_travel_transport_1410', 'retire_vocab_nouns_top500_58'],
+  'la ayuda': ['retire_vocab_nouns_society_491', 'retire_vocab_nouns_top500_419'],
+  'la boca': ['retire_vocab_nouns_health_529', 'retire_vocab_nouns_top500_25'],
+  'la bolsa': ['retire_vocab_shopping_14', 'retire_vocab_nouns_home_446', 'retire_vocab_nouns_top500_388'],
+  'la bronca': ['retire_vocab_slang_64', 'retire_vocab_nouns_top500_1433'],
+  'la cabeza': ['retire_vocab_nouns_health_505', 'retire_vocab_nouns_top500_22'],
+  'la calle': ['retire_vocab_travel_transport_1409', 'retire_vocab_nouns_top500_57'],
+  'la cama': ['retire_vocab_nouns_home_69', 'retire_vocab_nouns_top500_72'],
+  'la camisa': ['retire_vocab_clothing_340', 'retire_vocab_nouns_top500_317'],
+  'la camiseta': ['retire_vocab_clothing_341', 'retire_vocab_nouns_top500_318'],
+  'la canción': ['retire_vocab_nouns_culture_302', 'retire_vocab_nouns_top500_284'],
+  'la cara': ['retire_vocab_nouns_health_523', 'retire_vocab_nouns_top500_28'],
+  'la carne': ['retire_vocab_nouns_food_96', 'retire_vocab_nouns_top500_98'],
+  'la carretera': ['retire_vocab_travel_transport_13', 'retire_vocab_nouns_top500_129'],
+  'la casa': ['retire_vocab_nouns_home_61', 'retire_vocab_nouns_top500_64'],
+  'la cena': ['retire_vocab_nouns_food_85', 'retire_vocab_nouns_top500_87'],
+  'la chamarra': ['retire_vocab_clothing_347', 'retire_vocab_nouns_top500_324'],
+  'la clase': ['retire_vocab_nouns_work_104', 'retire_vocab_nouns_top500_106'],
+  'la clínica': ['retire_vocab_nouns_health_134', 'retire_vocab_nouns_top500_136'],
+  'la cocina': ['retire_vocab_nouns_home_65', 'retire_vocab_nouns_top500_68'],
+  'la comida': ['retire_vocab_nouns_food_81', 'retire_vocab_nouns_food_84', 'retire_vocab_nouns_top500_84'],
+  'la computadora': ['retire_vocab_technology_18', 'retire_vocab_nouns_top500_161'],
+  'la confianza': ['retire_vocab_emotions_38', 'retire_vocab_nouns_top500_206'],
+  'la costa': ['retire_vocab_nouns_nature_330', 'retire_vocab_nouns_top500_307'],
+  'la cuadra': ['retire_vocab_travel_transport_1413', 'retire_vocab_nouns_top500_1431'],
+  'la cuenta': ['retire_vocab_nouns_food_714', 'retire_vocab_nouns_work_117', 'retire_vocab_nouns_top500_119'],
+  'la dirección': ['retire_vocab_travel_transport_15', 'retire_vocab_nouns_top500_277'],
+  'la diversión': ['retire_vocab_nouns_culture_312', 'retire_vocab_nouns_top500_293'],
+  'la empresa': ['retire_vocab_nouns_work_113', 'retire_vocab_nouns_top500_115'],
+  'la enfermedad': ['retire_vocab_nouns_health_138', 'retire_vocab_nouns_top500_140'],
+  'la envidia': ['retire_vocab_emotions_42', 'retire_vocab_nouns_top500_210'],
+  'la escalera': ['retire_vocab_nouns_home_77', 'retire_vocab_nouns_top500_80'],
+  'la escuela': ['retire_vocab_nouns_work_102', 'retire_vocab_nouns_top500_104'],
+  'la espalda': ['retire_vocab_nouns_health_515', 'retire_vocab_nouns_top500_35'],
+  'la esperanza': ['retire_vocab_emotions_37', 'retire_vocab_nouns_society_500', 'retire_vocab_nouns_top500_205'],
+  'la esquina': ['retire_vocab_travel_transport_1412', 'retire_vocab_nouns_top500_1425'],
+  'la estación': ['retire_vocab_travel_transport_12', 'retire_vocab_nouns_top500_331'],
+  'la exposición': ['retire_vocab_nouns_culture_318', 'retire_vocab_nouns_top500_298'],
+  'la falda': ['retire_vocab_clothing_344', 'retire_vocab_nouns_top500_321'],
+  'la familia': ['retire_vocab_family_1', 'retire_vocab_nouns_top500_6'],
+  'la farmacia': ['retire_vocab_shopping_17', 'retire_vocab_nouns_top500_330'],
+  'la fiebre': ['retire_vocab_nouns_health_139', 'retire_vocab_nouns_top500_141'],
+  'la flor': ['retire_vocab_nouns_nature_152', 'retire_vocab_nouns_top500_154'],
+  'la foto / la fotografía': ['retire_vocab_nouns_home_451', 'retire_vocab_technology_16', 'retire_vocab_nouns_top500_393'],
+  'la frontera': ['retire_vocab_travel_transport_17', 'retire_vocab_nouns_top500_336'],
+  'la fruta': ['retire_vocab_nouns_food_99', 'retire_vocab_nouns_top500_101'],
+  'la gasolinera': ['retire_vocab_travel_transport_1129', 'retire_vocab_nouns_top500_131'],
+  'la guerra': ['retire_vocab_nouns_society_441', 'retire_vocab_nouns_top500_384'],
+  'la herida': ['retire_vocab_nouns_health_580', 'retire_vocab_nouns_top500_462'],
+  'la historia': ['retire_vocab_technology_37', 'retire_vocab_nouns_society_183', 'retire_vocab_nouns_top500_184'],
+  'la hora': ['retire_vocab_numbers_time_23', 'retire_vocab_nouns_top500_48'],
+  'la información': ['retire_vocab_nouns_society_186', 'retire_vocab_nouns_top500_187'],
+  'la isla': ['retire_vocab_nouns_nature_331', 'retire_vocab_nouns_top500_308'],
+  'la justicia': ['retire_vocab_nouns_society_443', 'retire_vocab_nouns_top500_386'],
+  'la leche': ['retire_vocab_nouns_food_89', 'retire_vocab_nouns_top500_91'],
+  'la lengua': ['retire_vocab_nouns_health_533', 'retire_vocab_nouns_top500_493'],
+  'la libertad': ['retire_vocab_nouns_society_444', 'retire_vocab_nouns_top500_387'],
+  'la llave': ['retire_vocab_travel_transport_56', 'retire_vocab_nouns_home_79', 'retire_vocab_nouns_top500_82'],
+  'la llegada': ['retire_vocab_travel_transport_22', 'retire_vocab_nouns_top500_280'],
+  'la lluvia': ['retire_vocab_nouns_nature_144', 'retire_vocab_nouns_top500_146'],
+  'la lonchería': ['retire_vocab_nouns_culture_231', 'retire_vocab_nouns_culture_601'],
+  'la luna': ['retire_vocab_nouns_nature_142', 'retire_vocab_nouns_top500_144'],
+  'la lámpara': ['retire_vocab_nouns_home_454', 'retire_vocab_nouns_top500_396'],
+  'la mamá / la madre': ['retire_vocab_family_3', 'retire_vocab_nouns_top500_8'],
+  'la mano': ['retire_vocab_nouns_health_511', 'retire_vocab_nouns_top500_32'],
+  'la medicina': ['retire_vocab_nouns_health_135', 'retire_vocab_nouns_top500_137'],
+  'la memoria': ['retire_vocab_technology_54', 'retire_vocab_nouns_top500_217'],
+  'la mentira': ['retire_vocab_nouns_society_482', 'retire_vocab_nouns_top500_413'],
+  'la mesa': ['retire_vocab_nouns_home_70', 'retire_vocab_nouns_top500_73'],
+  'la mochila': ['retire_vocab_travel_transport_49', 'retire_vocab_nouns_home_447', 'retire_vocab_nouns_top500_389'],
+  'la montaña': ['retire_vocab_nouns_nature_150', 'retire_vocab_nouns_top500_152'],
+  'la música': ['retire_vocab_nouns_culture_301', 'retire_vocab_nouns_top500_283'],
+  'la nariz': ['retire_vocab_nouns_health_528', 'retire_vocab_nouns_top500_24'],
+  'la nieve': ['retire_vocab_nouns_food_685', 'retire_vocab_nouns_nature_338'],
+  'la noche': ['retire_vocab_numbers_time_57', 'retire_vocab_nouns_top500_43'],
+  'la noticia': ['retire_vocab_nouns_society_187', 'retire_vocab_nouns_society_484', 'retire_vocab_nouns_top500_188'],
+  'la nube': ['retire_vocab_nouns_nature_336', 'retire_vocab_technology_53', 'retire_vocab_nouns_top500_313'],
+  'la oferta': ['retire_vocab_shopping_5', 'retire_vocab_nouns_top500_417'],
+  'la oficina': ['retire_vocab_nouns_work_111', 'retire_vocab_nouns_top500_113'],
+  'la palabra': ['retire_vocab_nouns_society_185', 'retire_vocab_nouns_top500_186'],
+  'la pantalla': ['retire_vocab_technology_3', 'retire_vocab_nouns_top500_167'],
+  'la pared': ['retire_vocab_nouns_home_75', 'retire_vocab_nouns_top500_78'],
+  'la pastilla': ['retire_vocab_nouns_health_136', 'retire_vocab_nouns_top500_138'],
+  'la paz': ['retire_vocab_nouns_society_442', 'retire_vocab_nouns_top500_385'],
+  'la película': ['retire_vocab_technology_72', 'retire_vocab_nouns_culture_303', 'retire_vocab_nouns_top500_285'],
+  'la piedra': ['retire_vocab_nouns_nature_325', 'retire_vocab_nouns_top500_303'],
+  'la pierna': ['retire_vocab_nouns_health_518', 'retire_vocab_nouns_top500_37'],
+  'la piñata': ['retire_vocab_nouns_culture_238', 'retire_vocab_nouns_culture_602'],
+  'la planta': ['retire_vocab_nouns_nature_153', 'retire_vocab_nouns_top500_155'],
+  'la policía': ['retire_vocab_nouns_society_439', 'retire_vocab_nouns_top500_382'],
+  'la promesa': ['retire_vocab_nouns_society_493', 'retire_vocab_nouns_top500_421'],
+  'la propina': ['retire_vocab_travel_transport_58', 'retire_vocab_nouns_top500_1428'],
+  'la puerta': ['retire_vocab_travel_transport_35', 'retire_vocab_nouns_home_67', 'retire_vocab_nouns_top500_70'],
+  'la queja': ['retire_vocab_nouns_society_486', 'retire_vocab_nouns_top500_416'],
+  'la quinceañera': ['retire_vocab_family_44', 'retire_vocab_nouns_culture_604'],
+  'la radio': ['retire_vocab_nouns_society_190', 'retire_vocab_nouns_top500_191'],
+  'la receta': ['retire_vocab_nouns_food_703', 'retire_vocab_nouns_health_140', 'retire_vocab_nouns_top500_142'],
+  'la red': ['retire_vocab_technology_10', 'retire_vocab_nouns_top500_163'],
+  'la reunión': ['retire_vocab_nouns_work_403', 'retire_vocab_nouns_top500_348'],
+  'la rodilla': ['retire_vocab_nouns_health_519', 'retire_vocab_nouns_top500_38'],
+  'la ropa': ['retire_vocab_shopping_200', 'retire_vocab_clothing_339', 'retire_vocab_nouns_top500_316'],
+  'la sala': ['retire_vocab_nouns_home_64', 'retire_vocab_nouns_top500_67'],
+  'la salida': ['retire_vocab_travel_transport_23', 'retire_vocab_nouns_top500_281'],
+  'la salsa': ['retire_vocab_nouns_food_95', 'retire_vocab_nouns_top500_97'],
+  'la salud': ['retire_vocab_nouns_health_131', 'retire_vocab_nouns_top500_133'],
+  'la semana': ['retire_vocab_numbers_time_27', 'retire_vocab_nouns_top500_44'],
+  'la señal': ['retire_vocab_travel_transport_1391', 'retire_vocab_technology_7', 'retire_vocab_nouns_top500_472'],
+  'la silla': ['retire_vocab_nouns_home_71', 'retire_vocab_nouns_top500_74'],
+  'la suerte': ['retire_vocab_nouns_society_497', 'retire_vocab_nouns_top500_422'],
+  'la talla': ['retire_vocab_shopping_12', 'retire_vocab_shopping_206'],
+  'la tarea': ['retire_vocab_nouns_work_109', 'retire_vocab_nouns_top500_111'],
+  'la tarjeta': ['retire_vocab_shopping_11', 'retire_vocab_nouns_work_119', 'retire_vocab_nouns_top500_121'],
+  'la televisión': ['retire_vocab_nouns_society_189', 'retire_vocab_nouns_top500_190'],
+  'la tienda': ['retire_vocab_shopping_1', 'retire_vocab_nouns_top500_62'],
+  'la tierra': ['retire_vocab_nouns_nature_321', 'retire_vocab_nouns_top500_300'],
+  'la tormenta': ['retire_vocab_nouns_nature_335', 'retire_vocab_nouns_top500_312'],
+  'la tortilla': ['retire_vocab_nouns_food_93', 'retire_vocab_nouns_top500_95'],
+  'la tristeza': ['retire_vocab_emotions_32', 'retire_vocab_nouns_top500_203'],
+  'la universidad': ['retire_vocab_nouns_work_103', 'retire_vocab_nouns_top500_105'],
+  'la vela': ['retire_vocab_nouns_home_453', 'retire_vocab_nouns_top500_395'],
+  'la velocidad': ['retire_vocab_travel_transport_1392', 'retire_vocab_nouns_top500_405'],
+  'la ventana': ['retire_vocab_nouns_home_68', 'retire_vocab_nouns_top500_71'],
+  'la verdad': ['retire_vocab_nouns_society_481', 'retire_vocab_nouns_top500_412'],
+  'la verdura': ['retire_vocab_nouns_food_100', 'retire_vocab_nouns_top500_102'],
+  'la vergüenza': ['retire_vocab_emotions_35', 'retire_vocab_nouns_top500_207'],
+  'la vida': ['retire_vocab_nouns_society_182', 'retire_vocab_nouns_top500_183'],
+  'la violencia': ['retire_vocab_nouns_society_436', 'retire_vocab_nouns_top500_379'],
+  'las vacaciones': ['retire_vocab_nouns_culture_310', 'retire_vocab_nouns_culture_609', 'retire_vocab_nouns_top500_291'],
+  'los tenis': ['retire_vocab_clothing_346', 'retire_vocab_nouns_top500_323'],
+  'los zapatos': ['retire_vocab_clothing_345', 'retire_vocab_nouns_top500_322'],
+  'mala onda': ['retire_vocab_adjectives_187', 'retire_vocab_slang_19'],
+  'nervioso/nerviosa': ['retire_vocab_adjectives_62', 'retire_vocab_emotions_7'],
+  'o sea': ['retire_vocab_adverbs_71', 'retire_vocab_connectors_37'],
+  'orgulloso/orgullosa': ['retire_vocab_adjectives_66', 'retire_vocab_emotions_14'],
+  'oscuro/oscura': ['retire_vocab_colors_16', 'retire_vocab_adjectives_33'],
+  'preocupado/preocupada': ['retire_vocab_adjectives_61', 'retire_vocab_emotions_8'],
+  'rico/rica': ['retire_vocab_adjectives_51', 'retire_vocab_nouns_food_709'],
+  'sin embargo': ['retire_vocab_adverbs_57', 'retire_vocab_connectors_27'],
+  'sorprendido/sorprendida': ['retire_vocab_adjectives_65', 'retire_vocab_emotions_5'],
+  'también': ['retire_vocab_adverbs_10', 'retire_vocab_connectors_30'],
+  'tampoco': ['retire_vocab_adverbs_11', 'retire_vocab_connectors_31'],
+  'tranquilo/tranquila': ['retire_vocab_adjectives_80', 'retire_vocab_emotions_9'],
+  'triste': ['retire_vocab_adjectives_56', 'retire_vocab_emotions_2']
+};
+
 // ══════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════
@@ -4941,14 +5298,14 @@ function showScreen(id) {
       _lastHubNav = hubMap[id];
     }
     btns[hubMap[id]].classList.add('active');
-  } else if (id === 'vocab' || id === 'top150' || ['pres','fut','pret','imp','subj','cond','ger','futprox'].includes(id)) {
+  } else if (id === 'vocab' || id === 'top150' || ['pres','fut','pret','imp','subj','cond','ger','futprox','imp2'].includes(id)) {
     // Content screen — highlight whichever hub we came from
     btns[_lastHubNav].classList.add('active');
   }
   if (id === 'top150') initTop150();
   if (id === 'vocab') resetVocabDeck();
   if (id === 'favs') initFavs();
-  if (['pres','fut','pret','imp','subj','cond','ger','futprox'].includes(id)) initTenseScreen(id);
+  if (['pres','fut','pret','imp','subj','cond','ger','futprox','imp2'].includes(id)) initTenseScreen(id);
   if (id === 'quiz') initQuizScreen();
 }
 
@@ -6368,6 +6725,48 @@ const TENSE_DECKS = {
     {verb:'viajar',   en:'to travel',   conj:{'yo':'voy a viajar','tú':'vas a viajar','él/ella/usted':'va a viajar','nosotros':'vamos a viajar','ustedes':'van a viajar'}},
     {verb:'aprender', en:'to learn',    conj:{'yo':'voy a aprender','tú':'vas a aprender','él/ella/usted':'va a aprender','nosotros':'vamos a aprender','ustedes':'van a aprender'}},
   ],
+  imp2: [
+    {verb:'hablar',   en:'to speak',           imp_tu:'habla',   imp_ud:'hable',   imp_uds:'hablen',  reg:'regular'},
+    {verb:'comer',    en:'to eat',             imp_tu:'come',    imp_ud:'coma',    imp_uds:'coman',   reg:'regular'},
+    {verb:'vivir',    en:'to live',            imp_tu:'vive',    imp_ud:'viva',    imp_uds:'vivan',   reg:'regular'},
+    {verb:'trabajar', en:'to work',            imp_tu:'trabaja', imp_ud:'trabaje', imp_uds:'trabajen',reg:'regular'},
+    {verb:'esperar',  en:'to wait',            imp_tu:'espera',  imp_ud:'espere',  imp_uds:'esperen', reg:'regular'},
+    {verb:'escuchar', en:'to listen',          imp_tu:'escucha', imp_ud:'escuche', imp_uds:'escuchen',reg:'regular'},
+    {verb:'caminar',  en:'to walk',            imp_tu:'camina',  imp_ud:'camine',  imp_uds:'caminen', reg:'regular'},
+    {verb:'comprar',  en:'to buy',             imp_tu:'compra',  imp_ud:'compre',  imp_uds:'compren', reg:'regular'},
+    {verb:'llamar',   en:'to call',            imp_tu:'llama',   imp_ud:'llame',   imp_uds:'llamen',  reg:'regular'},
+    {verb:'tomar',    en:'to take / to drink', imp_tu:'toma',    imp_ud:'tome',    imp_uds:'tomen',   reg:'regular'},
+    {verb:'mirar',    en:'to look / to watch', imp_tu:'mira',    imp_ud:'mire',    imp_uds:'miren',   reg:'regular'},
+    {verb:'entrar',   en:'to enter',           imp_tu:'entra',   imp_ud:'entre',   imp_uds:'entren',  reg:'regular'},
+    {verb:'pasar',    en:'to pass / to come in',imp_tu:'pasa',   imp_ud:'pase',    imp_uds:'pasen',   reg:'regular'},
+    {verb:'leer',     en:'to read',            imp_tu:'lee',     imp_ud:'lea',     imp_uds:'lean',    reg:'regular'},
+    {verb:'escribir', en:'to write',           imp_tu:'escribe', imp_ud:'escriba', imp_uds:'escriban',reg:'regular'},
+    {verb:'abrir',    en:'to open',            imp_tu:'abre',    imp_ud:'abra',    imp_uds:'abran',   reg:'regular'},
+    {verb:'beber',    en:'to drink',           imp_tu:'bebe',    imp_ud:'beba',    imp_uds:'beban',   reg:'regular'},
+    {verb:'correr',   en:'to run',             imp_tu:'corre',   imp_ud:'corra',   imp_uds:'corran',  reg:'regular'},
+    {verb:'subir',    en:'to go up',           imp_tu:'sube',    imp_ud:'suba',    imp_uds:'suban',   reg:'regular'},
+    {verb:'seguir',   en:'to follow / continue',imp_tu:'sigue',  imp_ud:'siga',    imp_uds:'sigan',   reg:'stem-change'},
+    {verb:'pedir',    en:'to ask for (e→i)',   imp_tu:'pide',    imp_ud:'pida',    imp_uds:'pidan',   reg:'stem-change'},
+    {verb:'dormir',   en:'to sleep (o→ue)',    imp_tu:'duerme',  imp_ud:'duerma',  imp_uds:'duerman', reg:'stem-change'},
+    {verb:'volver',   en:'to return (o→ue)',   imp_tu:'vuelve',  imp_ud:'vuelva',  imp_uds:'vuelvan', reg:'stem-change'},
+    {verb:'pensar',   en:'to think (e→ie)',    imp_tu:'piensa',  imp_ud:'piense',  imp_uds:'piensen', reg:'stem-change'},
+    {verb:'cerrar',   en:'to close (e→ie)',    imp_tu:'cierra',  imp_ud:'cierre',  imp_uds:'cierren', reg:'stem-change'},
+    {verb:'poder',    en:'to be able to (o→ue)',imp_tu:'puede',  imp_ud:'pueda',   imp_uds:'puedan',  reg:'stem-change'},
+    {verb:'ser',      en:'to be',              imp_tu:'sé',      imp_ud:'sea',     imp_uds:'sean',    reg:'irregular'},
+    {verb:'ir',       en:'to go',              imp_tu:'ve',      imp_ud:'vaya',    imp_uds:'vayan',   reg:'irregular'},
+    {verb:'hacer',    en:'to do / to make',    imp_tu:'haz',     imp_ud:'haga',    imp_uds:'hagan',   reg:'irregular'},
+    {verb:'tener',    en:'to have',            imp_tu:'ten',     imp_ud:'tenga',   imp_uds:'tengan',  reg:'irregular'},
+    {verb:'decir',    en:'to say / to tell',   imp_tu:'di',      imp_ud:'diga',    imp_uds:'digan',   reg:'irregular'},
+    {verb:'poner',    en:'to put / to place',  imp_tu:'pon',     imp_ud:'ponga',   imp_uds:'pongan',  reg:'irregular'},
+    {verb:'venir',    en:'to come',            imp_tu:'ven',     imp_ud:'venga',   imp_uds:'vengan',  reg:'irregular'},
+    {verb:'salir',    en:'to go out / to leave',imp_tu:'sal',    imp_ud:'salga',   imp_uds:'salgan',  reg:'irregular'},
+    {verb:'dar',      en:'to give',            imp_tu:'da',      imp_ud:'dé',      imp_uds:'den',     reg:'irregular'},
+    {verb:'saber',    en:'to know',            imp_tu:'sabe',    imp_ud:'sepa',    imp_uds:'sepan',   reg:'irregular'},
+    {verb:'ver',      en:'to see / to watch',  imp_tu:'ve',      imp_ud:'vea',     imp_uds:'vean',    reg:'irregular'},
+    {verb:'traer',    en:'to bring',           imp_tu:'trae',    imp_ud:'traiga',  imp_uds:'traigan', reg:'irregular'},
+    {verb:'estar',    en:'to be (state)',       imp_tu:'está',    imp_ud:'esté',    imp_uds:'estén',   reg:'irregular'},
+    {verb:'oír',      en:'to hear',            imp_tu:'oye',     imp_ud:'oiga',    imp_uds:'oigan',   reg:'irregular'},
+  ],
 };
 
 // Per-tense state: deck, index, flipped
@@ -6380,6 +6779,7 @@ const tenseDeckState = {
   cond:    { deck:[], idx:0, flipped:false },
   ger:     { deck:[], idx:0, flipped:false },
   futprox: { deck:[], idx:0, flipped:false },
+  imp2:    { deck:[], idx:0, flipped:false },
 };
 
 function initTenseScreen(t) {
@@ -6564,6 +6964,7 @@ function enForTense(rawEn, tense) {
   if (tense === 'fut')  { return 'will ' + core; }
   if (tense === 'ger')     { return 'being / -ing form of: ' + core; }
   if (tense === 'futprox') { return 'going to ' + core; }
+  if (tense === 'imp2')    { return core + ' (commands)'; }
   return rawEn; // fallback
 }
 
@@ -6609,6 +7010,23 @@ function showTenseCard(t) {
     document.getElementById(t + '-table').innerHTML = html;
     card.dataset.speakFront = v.verb;
     card.dataset.speakBack = JSON.stringify([v.ger, v.ex || '']);
+  } else if (t === 'imp2') {
+    // Imperative card: show tú / usted / ustedes command forms
+    html = `<div class="verb-row" style="border-bottom:1px solid var(--btn-hover);padding-bottom:8px;margin-bottom:8px;">` +
+             `<span class="pronoun" style="color:var(--accent2);">tú</span>` +
+             `<span class="conjugation" style="font-size:1.3rem;">${v.imp_tu}</span>` +
+           `</div>` +
+           `<div class="verb-row" style="border-bottom:1px solid var(--btn-hover);padding-bottom:8px;margin-bottom:8px;">` +
+             `<span class="pronoun" style="color:var(--accent3);">usted</span>` +
+             `<span class="conjugation">${v.imp_ud}</span>` +
+           `</div>` +
+           `<div class="verb-row">` +
+             `<span class="pronoun" style="color:var(--accent1);">ustedes</span>` +
+             `<span class="conjugation">${v.imp_uds}</span>` +
+           `</div>`;
+    document.getElementById(t + '-table').innerHTML = html;
+    card.dataset.speakFront = v.verb;
+    card.dataset.speakBack = JSON.stringify(['tú: ' + v.imp_tu, 'usted: ' + v.imp_ud, 'ustedes: ' + v.imp_uds]);
   } else {
     const entries = Object.entries(v.conj);
     entries.forEach(([pr, conj], i) => {
@@ -6665,7 +7083,7 @@ function shuffleTenseDeck(t) {
 function buildTenseFavCard(t) {
   const s = tenseDeckState[t];
   const v = s.deck[s.idx];
-  const tenseNames = { pres:'Present', fut:'Future', pret:'Pretérito Indefinido', imp:'Imperfect', subj:'Present Subjunctive', cond:'Conditional', ger:'Gerundio', futprox:'Futuro Próximo' };
+  const tenseNames = { pres:'Present', fut:'Future', pret:'Pretérito Indefinido', imp:'Imperfect', subj:'Present Subjunctive', cond:'Conditional', ger:'Gerundio', futprox:'Futuro Próximo', imp2:'Imperativo' };
   const tenseName = tenseNames[t] || t;
   const tenseHTML = `<span class="tense-badge">${tenseName}</span>`;
   let tableHTML = '';
@@ -6749,7 +7167,7 @@ function toggleFav(type) {
     let card;
     if (type === 'vocab') card = buildVocabFavCard();
     else if (type === 't150') card = buildT150FavCard();
-    else if (['pres','fut','pret','imp','subj','cond','ger','futprox'].includes(type)) card = buildTenseFavCard(type);
+    else if (['pres','fut','pret','imp','subj','cond','ger','futprox','imp2'].includes(type)) card = buildTenseFavCard(type);
     else if (type === 'fav') {
       favs.splice(favIdx, 1);
       saveFavs();
@@ -7199,7 +7617,7 @@ function buildQuizDeck(deckVal, skipRetireFilter) {
     });
   } else if (deckVal.startsWith('tense_')) {
     const t = deckVal.replace('tense_', '');
-    const tenseNames = {pres:'Present', fut:'Future', pret:'Pretérito', imp:'Imperfect', subj:'Subjunctive', cond:'Conditional', ger:'Gerundio', futprox:'Futuro Próximo'};
+    const tenseNames = {pres:'Present', fut:'Future', pret:'Pretérito', imp:'Imperfect', subj:'Subjunctive', cond:'Conditional', ger:'Gerundio', futprox:'Futuro Próximo', imp2:'Imperativo'};
     const deck = TENSE_DECKS[t] || [];
     const pronouns = ['yo','tú','él/ella/usted','nosotros','ustedes'];
     const prEN = {'yo':'I','tú':'you','él/ella/usted':'he/she/you','nosotros':'we','ustedes':'you all'};
@@ -7995,12 +8413,33 @@ function toggleRetire(type) {
   var arr = loadMastered();
   var found = -1;
   for (var i = 0; i < arr.length; i++) { if (arr[i].id === id) { found = i; break; } }
+  // Sync synonyms: find all other retire IDs for the same word
+  var synonymIds = [];
+  if (type === 'vocab') {
+    try {
+      var cv = vocabDeck[vocabIdx];
+      if (cv && VOCAB_SYNONYMS[cv.es]) {
+        synonymIds = VOCAB_SYNONYMS[cv.es].filter(function(sid) { return sid !== id; });
+      }
+    } catch(e) {}
+  }
+
   if (found >= 0) {
     arr.splice(found, 1);
+    // Un-retire synonyms too
+    synonymIds.forEach(function(sid) {
+      arr = arr.filter(function(m) { return m.id !== sid; });
+    });
     saveMastered(arr);
     showToast('↩️ Restored to rotation');
   } else {
     arr.push({ id: id, text: getRetireLabel(type), source: getRetireSource(type), type: type, retiredAt: Date.now() });
+    // Retire synonyms too (silently - no duplicate entries)
+    synonymIds.forEach(function(sid) {
+      if (!arr.some(function(m) { return m.id === sid; })) {
+        arr.push({ id: sid, text: getRetireLabel(type), source: getRetireSource(type), type: type, retiredAt: Date.now() });
+      }
+    });
     saveMastered(arr);
     showToast('🔥 Mastered! (' + arr.length + ' total)');
     // Fire animation then auto-advance after animation completes
@@ -8164,7 +8603,7 @@ function updateMasteredIndicators() {
 
 function updateNavBtnPct(screenId, r) {
   var btns = document.querySelectorAll('.nav-btn');
-  var map = {top150:0, pres:0, fut:0, pret:0, imp:0, subj:0, cond:0, ger:0, futprox:0, favs:4, mastered:5, quiz:6};
+  var map = {top150:0, pres:0, fut:0, pret:0, imp:0, subj:0, cond:0, ger:0, futprox:0, imp2:0, favs:4, mastered:5, quiz:6};
   var idx = map[screenId];
   if (idx === undefined) return;
   var btn = btns[idx];
